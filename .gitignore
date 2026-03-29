@@ -20,6 +20,8 @@ dist/
 .DS_Store
 .idea/
 .vscode/
+.codex
+.agents/
 
 # Local infrastructure data
 infra/docker/data/
