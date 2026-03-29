@@ -1,0 +1,4 @@
+run_id,sample_id,split_label,validation_result,reconstruction_result,final_status,latency_ms,validation_ms,reconstruction_ms,export_ms,peak_vram_mb,segmentation_score,pose_confidence,reconstruction_score,measurement_reliability,error_code,notes
+recon_bench_001,sample_0001,good,pass,success,body_ready,18420,810,16100,1510,15360,0.95,0.91,0.88,0.84,,stable baseline case
+recon_bench_001,sample_0002,warning,pass,success,body_ready,23610,940,20880,1790,16720,0.88,0.81,0.72,0.66,,loose clothing impact
+recon_bench_001,sample_0003,reject,reject,skipped,needs_reupload,620,620,0,0,2048,0.41,0.32,0.00,0.00,INPUT_REJECTED,reupload policy case

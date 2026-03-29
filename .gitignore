@@ -1,0 +1,32 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+
+# Local infrastructure data
+infra/docker/data/
+
+# Local user data and generated artifacts
+input/
+output/
+
+# Large model assets
+ai/checkpoints/

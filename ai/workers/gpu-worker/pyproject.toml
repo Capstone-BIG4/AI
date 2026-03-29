@@ -1,0 +1,18 @@
+[project]
+name = "capstone-gpu-worker"
+version = "0.1.0"
+description = "GPU worker skeleton for Step 3 body reconstruction CLI"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.26,<3.0",
+  "pillow>=10.0,<13.0",
+  "pydantic>=2.7,<3.0",
+]
+
+[project.scripts]
+capstone-reconstruct = "app.cli:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"

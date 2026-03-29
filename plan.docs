@@ -1,0 +1,68 @@
+Idea Proposal Presentation
+
+1. Target
+
+우리가 설계하려는 시스템: 단일 전신 사진 기반 3D 가상 피팅 시스템
+
+사용자 전신 사진 업로드 후 SAM 3D Body를 이용한 3D body mesh와 body parameter 생성, 그 위에 미리 준비된 3D garment asset fitting, 최종 결과의 웹 360도 확인 구조가 목표
+
+핵심 구성은 다음과 같다.
+Frontend: React, Three.js 기반 업로드 화면과 3D viewer
+Backend: FastAPI, Redis, MongoDB, Object Storage 기반 job orchestration
+AI Core: SAM 3D Body 기반 body reconstruction
+3D Processing: garment fitting, 결과 model export, viewer delivery
+
+2. Motivation
+
+온라인 쇼핑에서는 옷이 실제로 내 몸에 어떻게 보일지 미리 확인하기 어려운 상황
+
+기존 상품 사진이나 기본 마네킹만으로는 사용자별 체형 차이 반영 한계, 그에 따른 사이즈 선택 실패, 핏 예측 실패, 반품 증가 문제 존재
+
+사용자 전신 사진을 바탕으로 개인 체형에 가까운 3D body를 생성하고 그 위에 옷을 입혀보는 시스템의 필요, AI와 3D 기술을 활용한 온라인 쇼핑 불확실성 감소 목적
+
+3. Problem or Challenge
+
+첫 번째 challenge: 옷의 질감과 길이 표현
+
+옷의 texture, material, roughness 같은 질감 요소와 소매 길이, 상의 길이, 바지 길이 같은 shape 요소를 함께 반영해야 실제 가상 피팅에 가까운 결과 가능
+
+하지만 SAM 3D Body는 사람 body 복원 모델이므로 옷 자체의 질감이나 길이는 garment asset과 fitting rule로 별도 처리 필요
+
+두 번째 challenge: 신체 비율의 정확도
+
+단일 이미지 기반 reconstruction은 loose clothing, 카메라 각도, 포즈에 따라 실제 체형과 차이 발생 가능
+
+어깨, 허리, 힙, 팔 길이, 다리 길이와 같은 body proportion을 어느 정도 안정적으로 추정해야 가상 피팅 결과의 신뢰도 확보 가능
+
+세 번째 challenge: body와 garment를 안정적으로 결합하는 과정
+
+body reconstruction 결과와 garment asset의 좌표계, scale, rig 기준이 어긋나면 fitting 결과 붕괴 가능
+
+따라서 garment metadata, anchor rule, collision correction, export pipeline까지 함께 설계 필요
+
+4. Creative
+
+이 프로젝트의 창의성: 최신 foundation model인 SAM 3D Body를 활용한 단일 이미지 기반 3D body 복원과 이를 실제 virtual fitting 시스템으로 연결하는 구조
+
+단순 3D body 추출이 아니라, body reconstruction 결과를 garment fitting, backend orchestration, web viewer와 결합한 하나의 end-to-end 시스템 설계가 차별점
+
+또한 예쁜 디지털 휴먼 생성보다 개인 체형 기반 virtual fitting 자체에 초점을 두는 접근, 사용자가 자신의 체형에 가까운 3D body 위에서 옷의 실루엣과 핏을 확인할 수 있도록 하는 점에서 실제 서비스 문제 해결에 더 가까운 방향
+
+5. Plans
+
+Milestone은 다음과 같은 계획
+
+Phase 1: SAM 3D Body 기반 body reconstruction 안정화, mesh와 keypoints 및 body params 추출
+Phase 2: canonical body와 measurement extraction 정리, garment asset 1종 준비
+Phase 3: garment fitting rule 정의, Blender fast fit pipeline 구현
+Phase 4: backend API와 job flow 연결, frontend 업로드 및 viewer 연결
+Phase 5: end-to-end virtual fitting demo 완성, garment category 확장 또는 품질 개선
+
+역할 분담은 다음과 같은 계획
+
+윤성: AI core 담당, SAM 3D Body inference와 body mesh 및 measurement pipeline 정리
+은수: Backend 담당, FastAPI, Redis queue, MongoDB, storage flow 구성과 API 설계
+윤수: 3D fitting 담당, garment asset 준비, 옷 길이와 질감 rule 설계, garment-body fitting 처리
+우성: Frontend 담당, 업로드 화면, 진행 상태 화면, garment 선택 화면, 3D viewer 구현
+
+Proposal document 제출 시점: 발표일 2일 전 기준 준비

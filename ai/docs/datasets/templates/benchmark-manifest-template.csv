@@ -1,0 +1,4 @@
+sample_id,split_label,file_name,subject_count,body_visibility,occlusion_level,lighting_level,blur_level,background_complexity,perspective_level,clothing_looseness,pose_type,primary_reason,secondary_reasons,review_status,reviewer,dataset_version,notes
+sample_0001,good,sample_0001.jpg,single,full,none,normal,none,simple,normal,normal,front_neutral,,,approved,reviewer_a,input-benchmark-v0.1,baseline good sample
+sample_0002,warning,sample_0002.jpg,single,full,medium,normal,low,complex,normal,loose,front_neutral,LOOSE_CLOTHING,COMPLEX_BACKGROUND,approved,reviewer_b,input-benchmark-v0.1,loose upper garment with busy background
+sample_0003,reject,sample_0003.jpg,multiple,partial,high,dark,medium,complex,extreme,very_loose,other,MULTI_PERSON,"BODY_TRUNCATED|EXTREME_PERSPECTIVE",approved,reviewer_a,input-benchmark-v0.1,reupload expected
