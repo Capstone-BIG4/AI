@@ -1,0 +1,38 @@
+Capstone 3D Virtual Fitting Platform Requirements
+
+1. System
+- Ubuntu Linux 권장
+- git
+- docker
+- docker compose
+- make
+
+2. Frontend
+- Node.js >= 18.18.0
+- npm
+
+3. Backend
+- Python >= 3.11
+
+4. AI
+- Python >= 3.10
+- Conda 권장
+- NVIDIA GPU 권장
+- Hugging Face access 권장
+- SAM 3D Body gated checkpoint access 권장
+
+5. Local Validation Baseline
+- Frontend: Node 20
+- Backend: FastAPI skeleton local run
+- AI: Conda env bys
+- AI Python: 3.10.19
+- GPU: RTX 3090
+
+6. Optional Components
+- Redis
+- MongoDB
+- MinIO
+- Blender headless
+- detectron2
+- MoGe2
+- SAM2 or SAM3
