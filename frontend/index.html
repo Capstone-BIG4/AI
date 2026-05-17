@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3D 착장 미리보기</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/node_modules/three/build/three.module.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <main class="viewer-shell">
+      <canvas id="viewer" aria-label="3D body viewer"></canvas>
+
+      <div class="topbar">
+        <div class="brand">Fit Preview</div>
+        <div class="status" id="status">Loading</div>
+      </div>
+
+      <div class="toolbar" aria-label="camera controls">
+        <button type="button" data-view="front">정면</button>
+        <button type="button" data-view="left">측면</button>
+        <button type="button" data-view="back">후면</button>
+        <button type="button" data-action="reset">초기화</button>
+        <button type="button" data-action="snapshot">저장</button>
+      </div>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

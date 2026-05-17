@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.omx/
+.codex/
+.agents/
+AGENTS.md
+plan.md
+.env
+.venv/
+venv/
+node_modules/
+
+# Local model/runtime artifacts
+uploads/
+results/
+checkpoints/
+external/
+
+# Large generated samples
+assets/sample-results/
