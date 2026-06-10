@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-06-10T14:09:58Z",
+  "method": "viewer-display-sync-from-mask-locked-results",
+  "outputs": [
+    {
+      "view": "front",
+      "source": "assets/results/sam-body-only-front.png",
+      "destination": "assets/results/display/sam-body-only-front-contrast.png",
+      "operation": "curated-display-polish",
+      "display_size": {
+        "path": "assets/results/display/sam-body-only-front-contrast.png",
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      }
+    },
+    {
+      "view": "side",
+      "source": "assets/results/sam-body-only-side.png",
+      "destination": "assets/results/display/sam-body-only-side-contrast.png",
+      "operation": "best-pick-side-view",
+      "display_size": {
+        "path": "assets/results/display/sam-body-only-side-contrast.png",
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      }
+    },
+    {
+      "view": "back",
+      "source": "assets/results/sam-body-only-back.png",
+      "destination": "assets/results/display/sam-body-only-back-contrast.png",
+      "operation": "curated-display-polish",
+      "display_size": {
+        "path": "assets/results/display/sam-body-only-back-contrast.png",
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      }
+    }
+  ],
+  "notes": "Display images are synced from the current selected viewer results."
+}

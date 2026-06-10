@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-06-10T11:18:00Z",
+  "source_measurements": "assets/pipeline/viewer_hq/sam_measurements.json",
+  "resolution": [
+    1024,
+    1536
+  ],
+  "outputs": {
+    "front": {
+      "view": "front",
+      "path": "assets/pipeline/sam_body_only/base/front_sam_body_only_base.png",
+      "source": [
+        "assets/pipeline/sam3d/native_output.pt",
+        "assets/pipeline/sam3d/body.ply",
+        "assets/pipeline/viewer_hq/sam_measurements.json",
+        "assets/pipeline/viewer_hq/guides/front_silhouette.png",
+        "assets/pipeline/viewer_hq/guides/front_depth.png",
+        "assets/pipeline/viewer_hq/guides/front_normal.png"
+      ],
+      "claim_level": "sam-body-measurement-derived-base",
+      "notes": "Neutral mannequin base built from SAM Body measurements and guide masks only. When a refined SAM body base exists for this view, it is used to preserve the fixed sample body pose. No guide/mannequin reference image is used."
+    },
+    "side": {
+      "view": "side",
+      "path": "assets/pipeline/sam_body_only/base/side_sam_body_only_base.png",
+      "source": [
+        "assets/pipeline/sam3d/native_output.pt",
+        "assets/pipeline/sam3d/body.ply",
+        "assets/pipeline/viewer_hq/sam_measurements.json",
+        "assets/pipeline/viewer_hq/guides/side_silhouette.png",
+        "assets/pipeline/viewer_hq/guides/side_depth.png",
+        "assets/pipeline/viewer_hq/guides/side_normal.png"
+      ],
+      "claim_level": "sam-body-measurement-derived-base",
+      "notes": "Neutral mannequin base built from SAM Body measurements and guide masks only. When a refined SAM body base exists for this view, it is used to preserve the fixed sample body pose. No guide/mannequin reference image is used."
+    },
+    "back": {
+      "view": "back",
+      "path": "assets/pipeline/sam_body_only/base/back_sam_body_only_base.png",
+      "source": [
+        "assets/pipeline/sam3d/native_output.pt",
+        "assets/pipeline/sam3d/body.ply",
+        "assets/pipeline/viewer_hq/sam_measurements.json",
+        "assets/pipeline/viewer_hq/guides/back_silhouette.png",
+        "assets/pipeline/viewer_hq/guides/back_depth.png",
+        "assets/pipeline/viewer_hq/guides/back_normal.png"
+      ],
+      "claim_level": "sam-body-measurement-derived-base",
+      "notes": "Neutral mannequin base built from SAM Body measurements and guide masks only. When a refined SAM body base exists for this view, it is used to preserve the fixed sample body pose. No guide/mannequin reference image is used."
+    }
+  },
+  "forbidden_inputs": [
+    "guide/mannequin-front.png",
+    "guide/mannequin-side.png",
+    "guide/mannequin-back.png"
+  ],
+  "disclosure": "These base images are newly rendered from SAM Body measurements and neutral guide masks; user-provided mannequin reference images are not used."
+}

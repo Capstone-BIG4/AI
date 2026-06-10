@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-06-08T16:51:42Z",
+  "output_dir": "assets/pipeline/viewer_hq/candidates",
+  "candidates": [
+    {
+      "id": "front-candidate-000-source-cache",
+      "view": "front",
+      "path": "assets/pipeline/viewer_hq/candidates/front/candidate_000_source_cache.png",
+      "source": "assets/results/mannequin-front.png",
+      "candidate_type": "existing_high_quality_fixed_sample_cache",
+      "status": "eligible",
+      "image": {
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "notes": "Seed candidate preserves the current high-quality target cache. New diffusion/VTON candidates can be added beside this file and scored by the same pipeline."
+    },
+    {
+      "id": "front-candidate-999-rejected-draft",
+      "view": "front",
+      "path": "assets/pipeline/viewer_hq/candidates/front/candidate_999_rejected_draft.png",
+      "source": "assets/results/sam-mannequin-front.png",
+      "candidate_type": "quality_rejected_deterministic_sam_draft",
+      "status": "ineligible",
+      "image": {
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "notes": "Comparison-only failure case. It must not be selected."
+    },
+    {
+      "id": "side-candidate-000-source-cache",
+      "view": "side",
+      "path": "assets/pipeline/viewer_hq/candidates/side/candidate_000_source_cache.png",
+      "source": "assets/results/mannequin-side.png",
+      "candidate_type": "existing_high_quality_fixed_sample_cache",
+      "status": "eligible",
+      "image": {
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "notes": "Seed candidate preserves the current high-quality target cache. New diffusion/VTON candidates can be added beside this file and scored by the same pipeline."
+    },
+    {
+      "id": "side-candidate-999-rejected-draft",
+      "view": "side",
+      "path": "assets/pipeline/viewer_hq/candidates/side/candidate_999_rejected_draft.png",
+      "source": "assets/results/sam-mannequin-side.png",
+      "candidate_type": "quality_rejected_deterministic_sam_draft",
+      "status": "ineligible",
+      "image": {
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "notes": "Comparison-only failure case. It must not be selected."
+    },
+    {
+      "id": "back-candidate-000-source-cache",
+      "view": "back",
+      "path": "assets/pipeline/viewer_hq/candidates/back/candidate_000_source_cache.png",
+      "source": "assets/results/mannequin-back.png",
+      "candidate_type": "existing_high_quality_fixed_sample_cache",
+      "status": "eligible",
+      "image": {
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "notes": "Seed candidate preserves the current high-quality target cache. New diffusion/VTON candidates can be added beside this file and scored by the same pipeline."
+    },
+    {
+      "id": "back-candidate-999-rejected-draft",
+      "view": "back",
+      "path": "assets/pipeline/viewer_hq/candidates/back/candidate_999_rejected_draft.png",
+      "source": "assets/results/sam-mannequin-back.png",
+      "candidate_type": "quality_rejected_deterministic_sam_draft",
+      "status": "ineligible",
+      "image": {
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "notes": "Comparison-only failure case. It must not be selected."
+    }
+  ],
+  "note": "Candidate stage is intentionally open-ended: real VTON/diffusion outputs should be dropped into the same view folders and then scored."
+}

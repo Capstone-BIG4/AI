@@ -1,0 +1,30 @@
+{
+  "status": "success",
+  "required_outputs": [
+    "top_front_cutout",
+    "top_back_cutout",
+    "pants_front_cutout",
+    "pants_back_cutout",
+    "top_front_logo_mask",
+    "top_back_logo_mask",
+    "pants_back_pocket_mask"
+  ],
+  "missing": [],
+  "view_assignment": {
+    "front": [
+      "top_front_cutout",
+      "pants_front_cutout"
+    ],
+    "side": [
+      "top_front_cutout",
+      "top_back_cutout",
+      "pants_front_cutout",
+      "pants_back_cutout"
+    ],
+    "back": [
+      "top_back_cutout",
+      "pants_back_cutout"
+    ]
+  },
+  "source_metadata": "assets/pipeline/garments/garment_metadata.json"
+}

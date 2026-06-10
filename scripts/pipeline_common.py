@@ -13,11 +13,55 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
 PIPELINE = ASSETS / "pipeline"
+INPUT_SLOT_DIRS = {
+    "person": "person",
+    "top_front": "top-front",
+    "top_back": "top-back",
+    "pants_front": "pants-front",
+    "pants_back": "pants-back",
+}
+LEGACY_INPUTS = {
+    "person": ROOT / "image" / "은수형 사진.jpg",
+    "top_front": ROOT / "image" / "top_front.png",
+    "top_back": ROOT / "image" / "top_back.png",
+    "pants_front": ROOT / "image" / "front_pants.png",
+    "pants_back": ROOT / "image" / "back_pants.png",
+}
+ASSET_INPUTS = {
+    "person": ASSETS / "processed" / "person-oriented.jpg",
+    "top_front": ASSETS / "processed" / "top-front-cutout.png",
+    "top_back": ASSETS / "processed" / "top-back-cutout.png",
+    "pants_front": ASSETS / "processed" / "pants-front-cutout.png",
+    "pants_back": ASSETS / "processed" / "pants-back-cutout.png",
+}
 
 
 def ensure_dir(path: Path) -> Path:
     path.mkdir(parents=True, exist_ok=True)
     return path
+
+
+def latest_file(directory: Path) -> Path | None:
+    if not directory.exists():
+        return None
+    files = [path for path in directory.iterdir() if path.is_file()]
+    if not files:
+        return None
+    return max(files, key=lambda path: path.stat().st_mtime)
+
+
+def resolve_input_path(key: str) -> Path:
+    if key not in INPUT_SLOT_DIRS:
+        raise KeyError(key)
+    candidates = [
+        latest_file(ROOT / "runtime" / "inputs" / INPUT_SLOT_DIRS[key]),
+        LEGACY_INPUTS[key],
+        ASSET_INPUTS[key],
+    ]
+    for candidate in candidates:
+        if candidate is not None and candidate.exists():
+            return candidate
+    raise FileNotFoundError(f"Missing input for {key}; upload it through the UI or provide the matching sample file.")
 
 
 def read_env_keys(env_path: Path = ROOT / ".env") -> dict[str, str]:

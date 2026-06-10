@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-06-10T11:17:56Z",
+  "source_body": "assets/pipeline/sam3d/body.ply",
+  "vertex_count": 18439,
+  "bounds": {
+    "min": [
+      -0.36808788776397705,
+      -1.7922970056533813,
+      -0.2512436509132385
+    ],
+    "max": [
+      0.34892916679382324,
+      0.006330760195851326,
+      0.24049440026283264
+    ],
+    "span": [
+      0.7170170545578003,
+      1.7986277341842651,
+      0.49173805117607117
+    ]
+  },
+  "normalized": {
+    "height": 1.0,
+    "shoulder_width": 0.14916178584098816,
+    "body_depth": 0.27339622378349304,
+    "hip_to_shoulder": 1.7080789788987183,
+    "waist_to_shoulder": 1.37830832945095
+  },
+  "bands": {
+    "head": {
+      "x_width": 0.2808684706687927,
+      "z_depth": 0.33022353053092957
+    },
+    "shoulder": {
+      "x_width": 0.2682865262031555,
+      "z_depth": 0.20924586057662964
+    },
+    "chest": {
+      "x_width": 0.3633112907409668,
+      "z_depth": 0.2567700445652008
+    },
+    "waist": {
+      "x_width": 0.3697815537452698,
+      "z_depth": 0.288869172334671
+    },
+    "hip": {
+      "x_width": 0.4582545757293701,
+      "z_depth": 0.27359282970428467
+    },
+    "leg": {
+      "x_width": 0.7170170545578003,
+      "z_depth": 0.40647652745246887
+    }
+  },
+  "usage_note": "Used to size neutral front/side/back mannequin guides. SAM controls proportions; final viewer quality is produced by VTON/diffusion/refinement and best-pick."
+}

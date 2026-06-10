@@ -1,0 +1,33 @@
+{
+  "source": "sam-3d-body",
+  "official_repo": "https://github.com/facebookresearch/sam-3d-body",
+  "hf_repo_id": "facebook/sam-3d-body-dinov3",
+  "input_path": "assets/pipeline/preprocessed/person_oriented.png",
+  "started_at": "2026-06-10T11:17:07Z",
+  "status": "success",
+  "hf_token_present": false,
+  "hf_token_value_printed": false,
+  "device": "cuda",
+  "torch": {
+    "version": "2.10.0+cu128",
+    "cuda_available": true,
+    "cuda_device_count": 1
+  },
+  "faces_path": "assets/pipeline/sam3d/estimator_faces.npy",
+  "preview_original_size": {
+    "width": 17136,
+    "height": 5712
+  },
+  "preview_path": "assets/pipeline/sam3d/sam3d_preview_front.png",
+  "completed_at": "2026-06-10T11:17:35Z",
+  "native_output_path": "assets/pipeline/sam3d/native_output.pt",
+  "source_output_schema_path": "assets/pipeline/sam3d/source_output_schema.json",
+  "run_log_path": "assets/pipeline/sam3d/sam3d_run.log",
+  "exported_body_artifact": "assets/pipeline/sam3d/body.ply",
+  "exported_body_format": "ply",
+  "native_vertex_key": "0.pred_vertices",
+  "face_source": "assets/pipeline/sam3d/estimator_faces.npy",
+  "vertex_count": 18439,
+  "face_count": 36874,
+  "artifact_exported_at": "2026-06-10T11:17:40Z"
+}

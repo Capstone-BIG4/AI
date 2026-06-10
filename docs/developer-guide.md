@@ -198,5 +198,6 @@ python -c "from fastapi.testclient import TestClient; from backend.app.main impo
 - `.env`는 commit하지 않습니다.
 - 대용량 모델 파일은 repo에 넣지 않습니다.
 - SAM 3D Body 소스는 `external/sam-3d-body` 또는 `SAM3D_BODY_DIR`로 연결합니다.
+- FASHN VTON 가중치는 `external/fashn-vton-1.5/weights` 또는 `FASHN_WEIGHTS_DIR`로 연결합니다.
 - front / side / back viewer 경로를 바꿀 때는 `scripts/10_guard_viewer_contract.py`를 반드시 통과시킵니다.
 - 공개 문서에는 실시간 성능을 과장하지 않고, 현재 구현 범위를 명확히 적습니다.

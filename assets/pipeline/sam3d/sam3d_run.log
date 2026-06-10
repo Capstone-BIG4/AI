@@ -1,0 +1,10 @@
+status=success
+started_at=2026-06-10T11:17:07Z
+completed_at=2026-06-10T11:17:35Z
+hf_repo_id=facebook/sam-3d-body-dinov3
+input_path=assets/pipeline/preprocessed/person_oriented.png
+device=cuda
+native_output=assets/pipeline/sam3d/native_output.pt
+source_output_schema=assets/pipeline/sam3d/source_output_schema.json
+hf_token_value_printed=False
+note=stdout/stderr from the successful run was not persisted by the official API wrapper; this success log replaces an earlier failed attempt log.

@@ -1,0 +1,120 @@
+{
+  "schema": [
+    {
+      "bbox": {
+        "type": "ndarray",
+        "shape": [
+          4
+        ]
+      },
+      "focal_length": {
+        "type": "float32",
+        "shape": []
+      },
+      "pred_keypoints_3d": {
+        "type": "ndarray",
+        "shape": [
+          70,
+          3
+        ]
+      },
+      "pred_keypoints_2d": {
+        "type": "ndarray",
+        "shape": [
+          70,
+          2
+        ]
+      },
+      "pred_vertices": {
+        "type": "ndarray",
+        "shape": [
+          18439,
+          3
+        ]
+      },
+      "pred_cam_t": {
+        "type": "ndarray",
+        "shape": [
+          3
+        ]
+      },
+      "pred_pose_raw": {
+        "type": "ndarray",
+        "shape": [
+          266
+        ]
+      },
+      "global_rot": {
+        "type": "ndarray",
+        "shape": [
+          3
+        ]
+      },
+      "body_pose_params": {
+        "type": "ndarray",
+        "shape": [
+          133
+        ]
+      },
+      "hand_pose_params": {
+        "type": "ndarray",
+        "shape": [
+          108
+        ]
+      },
+      "scale_params": {
+        "type": "ndarray",
+        "shape": [
+          28
+        ]
+      },
+      "shape_params": {
+        "type": "ndarray",
+        "shape": [
+          45
+        ]
+      },
+      "expr_params": {
+        "type": "ndarray",
+        "shape": [
+          72
+        ]
+      },
+      "mask": "NoneType",
+      "pred_joint_coords": {
+        "type": "ndarray",
+        "shape": [
+          127,
+          3
+        ]
+      },
+      "pred_global_rots": {
+        "type": "ndarray",
+        "shape": [
+          127,
+          3,
+          3
+        ]
+      },
+      "mhr_model_params": {
+        "type": "ndarray",
+        "shape": [
+          204
+        ]
+      },
+      "lhand_bbox": {
+        "type": "ndarray",
+        "shape": [
+          4
+        ]
+      },
+      "rhand_bbox": {
+        "type": "ndarray",
+        "shape": [
+          4
+        ]
+      }
+    }
+  ],
+  "generated_at": "2026-06-10T11:17:31Z"
+}

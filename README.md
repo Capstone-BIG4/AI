@@ -54,6 +54,7 @@ HF_TOKEN=
 FASHN_API_KEY=
 CONDA_ENV=bys
 SAM3D_BODY_DIR=external/sam-3d-body
+FASHN_WEIGHTS_DIR=external/fashn-vton-1.5/weights
 ```
 
 SAM 3D Body 공식 소스는 아래처럼 연결합니다.

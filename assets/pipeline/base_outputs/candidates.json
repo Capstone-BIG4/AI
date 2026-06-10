@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-06-08T13:58:50Z",
+  "candidates": [
+    {
+      "id": "front_candidate_001",
+      "view": "front",
+      "path": "assets/pipeline/base_outputs/front_candidate_001.png",
+      "lane": "deterministic_geometry_composite",
+      "status": "selected_base",
+      "condition_label": "sam_guide_conditioned",
+      "consumed_guide_paths": [
+        "assets/pipeline/guides/front_silhouette.png",
+        "assets/pipeline/guides/front_depth.png",
+        "assets/pipeline/guides/front_normal.png"
+      ],
+      "garment_reference_paths": [
+        "assets/pipeline/garments/top_front_cutout.png",
+        "assets/pipeline/garments/pants_front_cutout.png"
+      ],
+      "normal_reference_path": "assets/pipeline/guides/front_normal.png",
+      "generated_at": "2026-06-08T13:58:50Z",
+      "notes": "Rough deterministic base candidate. Final quality comes from the SAM-body refinement/compositing stage."
+    },
+    {
+      "id": "side_candidate_001",
+      "view": "side",
+      "path": "assets/pipeline/base_outputs/side_candidate_001.png",
+      "lane": "deterministic_geometry_composite",
+      "status": "selected_base",
+      "condition_label": "sam_guide_conditioned",
+      "consumed_guide_paths": [
+        "assets/pipeline/guides/side_silhouette.png",
+        "assets/pipeline/guides/side_depth.png",
+        "assets/pipeline/guides/side_normal.png"
+      ],
+      "garment_reference_paths": [
+        "assets/pipeline/garments/top_front_cutout.png",
+        "assets/pipeline/garments/pants_front_cutout.png"
+      ],
+      "normal_reference_path": "assets/pipeline/guides/side_normal.png",
+      "generated_at": "2026-06-08T13:58:50Z",
+      "notes": "Rough deterministic base candidate. Final quality comes from the SAM-body refinement/compositing stage."
+    },
+    {
+      "id": "back_candidate_001",
+      "view": "back",
+      "path": "assets/pipeline/base_outputs/back_candidate_001.png",
+      "lane": "deterministic_geometry_composite",
+      "status": "selected_base",
+      "condition_label": "sam_guide_conditioned",
+      "consumed_guide_paths": [
+        "assets/pipeline/guides/back_silhouette.png",
+        "assets/pipeline/guides/back_depth.png",
+        "assets/pipeline/guides/back_normal.png"
+      ],
+      "garment_reference_paths": [
+        "assets/pipeline/garments/top_back_cutout.png",
+        "assets/pipeline/garments/pants_back_cutout.png"
+      ],
+      "normal_reference_path": "assets/pipeline/guides/back_normal.png",
+      "generated_at": "2026-06-08T13:58:50Z",
+      "notes": "Rough deterministic base candidate. Final quality comes from the SAM-body refinement/compositing stage."
+    }
+  ]
+}

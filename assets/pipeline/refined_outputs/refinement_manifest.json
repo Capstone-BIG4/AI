@@ -1,0 +1,110 @@
+{
+  "generated_at": "2026-06-08T14:03:56Z",
+  "refined": [
+    {
+      "id": "front_refined_001",
+      "view": "front",
+      "path": "assets/pipeline/refined_outputs/front_refined_001.png",
+      "body_base_path": "assets/pipeline/refined_outputs/front_sam_body_base.png",
+      "shirt_mask_path": "assets/pipeline/refined_outputs/front_shirt_mask.png",
+      "pants_mask_path": "assets/pipeline/refined_outputs/front_pants_mask.png",
+      "base_candidate": "assets/pipeline/base_outputs/front_candidate_001.png",
+      "consumed_guide_paths": [
+        "assets/pipeline/guides/front_silhouette.png",
+        "assets/pipeline/guides/front_depth.png",
+        "assets/pipeline/guides/front_normal.png"
+      ],
+      "source_reference": [
+        "assets/pipeline/garments/top_front_cutout.png",
+        "assets/pipeline/garments/top_back_cutout.png",
+        "assets/pipeline/garments/pants_front_cutout.png",
+        "assets/pipeline/garments/pants_back_cutout.png",
+        "assets/pipeline/garments/top_front_logo_mask.png",
+        "assets/pipeline/garments/top_back_logo_mask.png"
+      ],
+      "method": "sam_body_deterministic_cloth_composite",
+      "manual_or_semiautomatic_polish": false,
+      "exact_script_reproducible": true,
+      "uses_cached_generic_mannequin": false,
+      "edited_regions": [
+        "shirt mask from SAM silhouette",
+        "pants mask from SAM silhouette",
+        "fabric texture transferred from garment photos",
+        "logo/detail overlay from garment masks",
+        "studio mannequin shading from SAM depth and normal maps"
+      ],
+      "disclosure": "Technical draft generated on top of the actual SAM 3D Body mesh-derived guides using deterministic 2.5D garment compositing. It is retained as pipeline evidence only and is not used as the final viewer output.",
+      "generated_at": "2026-06-08T14:03:44Z"
+    },
+    {
+      "id": "side_refined_001",
+      "view": "side",
+      "path": "assets/pipeline/refined_outputs/side_refined_001.png",
+      "body_base_path": "assets/pipeline/refined_outputs/side_sam_body_base.png",
+      "shirt_mask_path": "assets/pipeline/refined_outputs/side_shirt_mask.png",
+      "pants_mask_path": "assets/pipeline/refined_outputs/side_pants_mask.png",
+      "base_candidate": "assets/pipeline/base_outputs/side_candidate_001.png",
+      "consumed_guide_paths": [
+        "assets/pipeline/guides/side_silhouette.png",
+        "assets/pipeline/guides/side_depth.png",
+        "assets/pipeline/guides/side_normal.png"
+      ],
+      "source_reference": [
+        "assets/pipeline/garments/top_front_cutout.png",
+        "assets/pipeline/garments/top_back_cutout.png",
+        "assets/pipeline/garments/pants_front_cutout.png",
+        "assets/pipeline/garments/pants_back_cutout.png",
+        "assets/pipeline/garments/top_front_logo_mask.png",
+        "assets/pipeline/garments/top_back_logo_mask.png"
+      ],
+      "method": "sam_body_deterministic_cloth_composite",
+      "manual_or_semiautomatic_polish": false,
+      "exact_script_reproducible": true,
+      "uses_cached_generic_mannequin": false,
+      "edited_regions": [
+        "shirt mask from SAM silhouette",
+        "pants mask from SAM silhouette",
+        "fabric texture transferred from garment photos",
+        "logo/detail overlay from garment masks",
+        "studio mannequin shading from SAM depth and normal maps"
+      ],
+      "disclosure": "Technical draft generated on top of the actual SAM 3D Body mesh-derived guides using deterministic 2.5D garment compositing. It is retained as pipeline evidence only and is not used as the final viewer output.",
+      "generated_at": "2026-06-08T14:03:48Z"
+    },
+    {
+      "id": "back_refined_001",
+      "view": "back",
+      "path": "assets/pipeline/refined_outputs/back_refined_001.png",
+      "body_base_path": "assets/pipeline/refined_outputs/back_sam_body_base.png",
+      "shirt_mask_path": "assets/pipeline/refined_outputs/back_shirt_mask.png",
+      "pants_mask_path": "assets/pipeline/refined_outputs/back_pants_mask.png",
+      "base_candidate": "assets/pipeline/base_outputs/back_candidate_001.png",
+      "consumed_guide_paths": [
+        "assets/pipeline/guides/back_silhouette.png",
+        "assets/pipeline/guides/back_depth.png",
+        "assets/pipeline/guides/back_normal.png"
+      ],
+      "source_reference": [
+        "assets/pipeline/garments/top_front_cutout.png",
+        "assets/pipeline/garments/top_back_cutout.png",
+        "assets/pipeline/garments/pants_front_cutout.png",
+        "assets/pipeline/garments/pants_back_cutout.png",
+        "assets/pipeline/garments/top_front_logo_mask.png",
+        "assets/pipeline/garments/top_back_logo_mask.png"
+      ],
+      "method": "sam_body_deterministic_cloth_composite",
+      "manual_or_semiautomatic_polish": false,
+      "exact_script_reproducible": true,
+      "uses_cached_generic_mannequin": false,
+      "edited_regions": [
+        "shirt mask from SAM silhouette",
+        "pants mask from SAM silhouette",
+        "fabric texture transferred from garment photos",
+        "logo/detail overlay from garment masks",
+        "studio mannequin shading from SAM depth and normal maps"
+      ],
+      "disclosure": "Technical draft generated on top of the actual SAM 3D Body mesh-derived guides using deterministic 2.5D garment compositing. It is retained as pipeline evidence only and is not used as the final viewer output.",
+      "generated_at": "2026-06-08T14:03:56Z"
+    }
+  ]
+}

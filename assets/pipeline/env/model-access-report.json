@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-06-08T10:55:42Z",
+  "hf_token_present": true,
+  "hf_token_value_printed": false,
+  "sam3d_repo_path": "external/sam-3d-body",
+  "sam3d_repo_exists": true,
+  "checkpoint_expected_dir": "external/sam-3d-body/checkpoints/sam-3d-body-dinov3",
+  "checkpoint_dir_exists": false,
+  "required_checkpoint_files": {
+    "model_ckpt": true,
+    "mhr_model": true
+  },
+  "resolved_checkpoint_files": {
+    "model_ckpt": "/home/bys0626/.cache/huggingface/hub/models--facebook--sam-3d-body-dinov3/snapshots/11aaa346c7204874a1cbafe3d39a979080b2c55a/model.ckpt",
+    "mhr_model": "/home/bys0626/.cache/huggingface/hub/models--facebook--sam-3d-body-dinov3/snapshots/11aaa346c7204874a1cbafe3d39a979080b2c55a/assets/mhr_model.pt",
+    "source": "huggingface_cache"
+  },
+  "status": "ready"
+}

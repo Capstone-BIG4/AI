@@ -1,0 +1,121 @@
+{
+  "generated_at": "2026-06-10T11:20:04Z",
+  "model": "fashn-vton-v1.5-local",
+  "weights_dir": "external/fashn-vton-1.5/weights",
+  "base_manifest": "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
+  "views": [
+    "front",
+    "back",
+    "side"
+  ],
+  "last_run_views": [
+    "side"
+  ],
+  "seeds": [
+    2201
+  ],
+  "timesteps": 30,
+  "guidance": 1.55,
+  "forbidden_inputs": [
+    "guide/mannequin-back.png",
+    "guide/mannequin-front.png",
+    "guide/mannequin-side.png"
+  ],
+  "candidates": [
+    {
+      "id": "front-sam-body-only-fashn-seed2101-top-then-pants",
+      "view": "front",
+      "path": "assets/pipeline/sam_body_only/fashn/front/seed2101_top_then_pants.png",
+      "upper_stage": "assets/pipeline/sam_body_only/fashn/front/seed2101_top.png",
+      "base_person": "assets/pipeline/sam_body_only/base/front_sam_body_only_base.png",
+      "source": [
+        "assets/pipeline/sam_body_only/base/front_sam_body_only_base.png",
+        "assets/pipeline/sam3d/native_output.pt",
+        "assets/pipeline/sam3d/body.ply",
+        "assets/pipeline/viewer_hq/sam_measurements.json",
+        "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
+        "runtime/inputs/top-front/top_front.png",
+        "runtime/inputs/pants-front/front_pants.png",
+        "assets/pipeline/sam_body_only/fashn/front/seed2101_top.png"
+      ],
+      "top_garment": "runtime/inputs/top-front/top_front.png",
+      "pants_garment": "runtime/inputs/pants-front/front_pants.png",
+      "model": "fashn-vton-v1.5-local",
+      "seed": 2101,
+      "timesteps": 24,
+      "guidance": 1.65,
+      "image": {
+        "path": "assets/pipeline/sam_body_only/fashn/front/seed2101_top_then_pants.png",
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "claim_level": "sam-body-only-generated-candidate",
+      "notes": "Generated from the SAM Body measurement-derived mannequin base. guide/mannequin reference images are not used."
+    },
+    {
+      "id": "back-sam-body-only-fashn-seed2101-top-then-pants",
+      "view": "back",
+      "path": "assets/pipeline/sam_body_only/fashn/back/seed2101_top_then_pants.png",
+      "upper_stage": "assets/pipeline/sam_body_only/fashn/back/seed2101_top.png",
+      "base_person": "assets/pipeline/sam_body_only/base/back_sam_body_only_base.png",
+      "source": [
+        "assets/pipeline/sam_body_only/base/back_sam_body_only_base.png",
+        "assets/pipeline/sam3d/native_output.pt",
+        "assets/pipeline/sam3d/body.ply",
+        "assets/pipeline/viewer_hq/sam_measurements.json",
+        "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
+        "runtime/inputs/top-back/top_back.png",
+        "runtime/inputs/pants-back/back_pants.png",
+        "assets/pipeline/sam_body_only/fashn/back/seed2101_top.png"
+      ],
+      "top_garment": "runtime/inputs/top-back/top_back.png",
+      "pants_garment": "runtime/inputs/pants-back/back_pants.png",
+      "model": "fashn-vton-v1.5-local",
+      "seed": 2101,
+      "timesteps": 24,
+      "guidance": 1.65,
+      "image": {
+        "path": "assets/pipeline/sam_body_only/fashn/back/seed2101_top_then_pants.png",
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "claim_level": "sam-body-only-generated-candidate",
+      "notes": "Generated from the SAM Body measurement-derived mannequin base. guide/mannequin reference images are not used."
+    },
+    {
+      "id": "side-sam-body-only-fashn-seed2201-top-then-pants",
+      "view": "side",
+      "path": "assets/pipeline/sam_body_only/fashn/side/seed2201_top_then_pants.png",
+      "upper_stage": "assets/pipeline/sam_body_only/fashn/side/seed2201_top.png",
+      "base_person": "assets/pipeline/sam_body_only/base/side_sam_body_only_base.png",
+      "source": [
+        "assets/pipeline/sam_body_only/base/side_sam_body_only_base.png",
+        "assets/pipeline/sam3d/native_output.pt",
+        "assets/pipeline/sam3d/body.ply",
+        "assets/pipeline/viewer_hq/sam_measurements.json",
+        "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
+        "runtime/inputs/top-front/top_front.png",
+        "runtime/inputs/pants-front/front_pants.png",
+        "assets/pipeline/sam_body_only/fashn/side/seed2201_top.png"
+      ],
+      "top_garment": "runtime/inputs/top-front/top_front.png",
+      "pants_garment": "runtime/inputs/pants-front/front_pants.png",
+      "model": "fashn-vton-v1.5-local",
+      "seed": 2201,
+      "timesteps": 30,
+      "guidance": 1.55,
+      "image": {
+        "path": "assets/pipeline/sam_body_only/fashn/side/seed2201_top_then_pants.png",
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "claim_level": "sam-body-only-generated-candidate",
+      "notes": "Generated from the SAM Body measurement-derived mannequin base. guide/mannequin reference images are not used."
+    }
+  ],
+  "contact_sheet": "assets/pipeline/sam_body_only/fashn/contact_sheet.png",
+  "disclosure": "Generated candidates use only the SAM Body measurement-derived mannequin base as the person target. User-created guide/mannequin reference images are excluded."
+}

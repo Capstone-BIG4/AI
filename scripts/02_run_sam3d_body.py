@@ -53,7 +53,7 @@ def run_sam3d(input_path: Path, output_dir: Path, hf_repo_id: str) -> int:
         "hf_token_value_printed": False,
     }
 
-    repo = Path(env.get("SAM3D_BODY_DIR") or ROOT / "external" / "sam-3d-body").expanduser()
+    repo = Path(os.environ.get("SAM3D_BODY_DIR") or env.get("SAM3D_BODY_DIR") or ROOT / "external" / "sam-3d-body").expanduser()
     if repo.exists():
         sys.path.insert(0, str(repo))
     else:
@@ -72,9 +72,15 @@ def run_sam3d(input_path: Path, output_dir: Path, hf_repo_id: str) -> int:
         from notebook.utils import setup_sam_3d_body
         from tools.vis_utils import visualize_sample_together
 
-        device = "cuda" if torch.cuda.is_available() else "cpu"
+        cuda_available = bool(torch.cuda.is_available())
+        cuda_device_count = int(torch.cuda.device_count())
+        device = "cuda" if cuda_available or cuda_device_count > 0 else "cpu"
         metadata["device"] = device
-        metadata["torch"] = {"version": torch.__version__, "cuda_available": bool(torch.cuda.is_available())}
+        metadata["torch"] = {
+            "version": torch.__version__,
+            "cuda_available": cuda_available,
+            "cuda_device_count": cuda_device_count,
+        }
 
         estimator = setup_sam_3d_body(
             hf_repo_id=hf_repo_id,
@@ -100,7 +106,18 @@ def run_sam3d(input_path: Path, output_dir: Path, hf_repo_id: str) -> int:
 
         try:
             rend_img = visualize_sample_together(img_bgr, outputs, estimator.faces)
-            cv2.imwrite(str(output_dir / "sam3d_preview_front.png"), rend_img.astype(np.uint8))
+            preview = rend_img.astype(np.uint8)
+            original_height, original_width = preview.shape[:2]
+            max_preview_side = 3072
+            scale = min(1.0, max_preview_side / max(original_width, original_height))
+            if scale < 1.0:
+                preview = cv2.resize(
+                    preview,
+                    (int(original_width * scale), int(original_height * scale)),
+                    interpolation=cv2.INTER_AREA,
+                )
+                metadata["preview_original_size"] = {"width": original_width, "height": original_height}
+            cv2.imwrite(str(output_dir / "sam3d_preview_front.png"), preview)
             metadata["preview_path"] = relative(output_dir / "sam3d_preview_front.png")
         except Exception as preview_exc:
             metadata["preview_error"] = f"{type(preview_exc).__name__}: {preview_exc}"

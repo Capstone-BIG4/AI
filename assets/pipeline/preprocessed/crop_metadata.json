@@ -1,0 +1,17 @@
+{
+  "source": "runtime/inputs/person/은수형_사진.jpg",
+  "oriented": "assets/pipeline/preprocessed/person_oriented.png",
+  "crop": "assets/pipeline/preprocessed/person_crop.png",
+  "mask": "assets/pipeline/preprocessed/person_mask.png",
+  "original_size": [
+    4284,
+    5712
+  ],
+  "crop_box_xyxy": [
+    0,
+    0,
+    4284,
+    5712
+  ],
+  "method": "exif_transpose_plus_corner_background_difference"
+}

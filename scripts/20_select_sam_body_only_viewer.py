@@ -8,7 +8,7 @@ import cv2
 import numpy as np
 from PIL import Image, ImageFilter
 
-from pipeline_common import ASSETS, PIPELINE, ROOT, ensure_dir, image_info, now_iso, read_json, relative, write_json
+from pipeline_common import ASSETS, PIPELINE, ROOT, ensure_dir, image_info, now_iso, read_json, relative, resolve_input_path, write_json
 
 
 FORBIDDEN_REFERENCES = {
@@ -28,6 +28,7 @@ DISPLAY_DESTINATIONS = {
     "back": DISPLAY_DIR / "sam-body-only-back-contrast.png",
 }
 MASK_LOCKED_DIR = PIPELINE / "sam_body_only" / "mask_locked"
+BEST_PICK_DIR = PIPELINE / "sam_body_only" / "best_pick"
 DEFAULT_SELECTIONS = {
     "front": PIPELINE / "sam_body_only" / "fashn" / "front" / "seed2101_top_then_pants.png",
     "side": PIPELINE / "sam_body_only" / "fashn" / "side" / "seed2201_top_then_pants.png",
@@ -39,25 +40,30 @@ BASE_IMAGES = {
     "back": PIPELINE / "sam_body_only" / "base" / "back_sam_body_only_base.png",
 }
 GARMENTS = {
-    "front": ("image/top_front.png", "image/front_pants.png"),
-    "side": ("image/top_front.png", "image/front_pants.png"),
-    "back": ("image/top_back.png", "image/back_pants.png"),
+    "front": ("top_front", "pants_front"),
+    "side": ("top_front", "pants_front"),
+    "back": ("top_back", "pants_back"),
 }
 REFINED_MASKS = {
     view: {
         "shirt": PIPELINE / "refined_outputs" / f"{view}_shirt_mask.png",
         "pants": PIPELINE / "refined_outputs" / f"{view}_pants_mask.png",
     }
-    for view in ("front", "back")
+    for view in ("front", "side", "back")
 }
 CURATED_MASKS = {
     view: {
         "shirt": PIPELINE / "experiments" / "sam_mask_locked_best_seed2101" / f"{view}_shirt_mask.png",
         "pants": PIPELINE / "experiments" / "sam_mask_locked_best_seed2101" / f"{view}_pants_mask.png",
     }
-    for view in ("front", "back")
+    for view in ("front", "side", "back")
 }
 CURATED_DISPLAY = {
+    "front": BEST_PICK_DIR / "front_best_display.png",
+    "side": BEST_PICK_DIR / "side_best_display.png",
+    "back": BEST_PICK_DIR / "back_best_display.png",
+}
+FALLBACK_CURATED_DISPLAY = {
     "front": PIPELINE
     / "experiments"
     / "sam_mask_locked_best_seed2101_display"
@@ -115,18 +121,25 @@ def clean_mask(mask: np.ndarray, close: int, open_: int, dilate: int) -> Image.I
 def fallback_mask(view: str, kind: str, selected: Path, destination: Path) -> str:
     source = np.asarray(open_rgb(selected))
     hint_path = REFINED_MASKS[view][kind]
-    hint = np.asarray(Image.open(hint_path).convert("L")) > 24
-    hint = cv2.dilate(hint.astype(np.uint8) * 255, np.ones((27, 27), np.uint8), iterations=1) > 0
+    if hint_path.exists():
+        hint = np.asarray(Image.open(hint_path).convert("L")) > 24
+        hint = cv2.dilate(hint.astype(np.uint8) * 255, np.ones((27, 27), np.uint8), iterations=1) > 0
+        hint_method = "with-hint-mask"
+    else:
+        hint = np.ones(source.shape[:2], dtype=bool)
+        hint_method = "without-hint-mask"
 
     red = source[..., 0]
     green = source[..., 1]
     blue = source[..., 2]
     mean = source.mean(axis=2)
     spread = source.max(axis=2) - source.min(axis=2)
+    yy = np.arange(source.shape[0])[:, None]
     if kind == "shirt":
         dark_fabric = (mean < 96) & (spread < 64)
         white_print = (mean > 152) & (spread < 58)
-        mask = hint & (dark_fabric | white_print)
+        below_head = yy > int(source.shape[0] * 0.19)
+        mask = hint & below_head & (dark_fabric | white_print)
         mask = largest_components(mask, 900)
         mask_image = clean_mask(mask, close=19, open_=3, dilate=2)
     else:
@@ -137,7 +150,7 @@ def fallback_mask(view: str, kind: str, selected: Path, destination: Path) -> st
         mask_image = clean_mask(mask, close=25, open_=5, dilate=4)
 
     mask_image.save(destination)
-    return "color-fallback-from-selected-vton"
+    return f"color-fallback-from-selected-vton-{hint_method}"
 
 
 def write_lock_mask(view: str, kind: str, selected: Path, output_dir: Path) -> tuple[Path, str]:
@@ -176,6 +189,16 @@ def display_polish_fallback(locked: Path, destination: Path) -> None:
     image.save(destination, quality=96)
 
 
+def curated_display_path(view: str) -> Path | None:
+    primary = CURATED_DISPLAY.get(view)
+    if primary and primary.exists():
+        return primary
+    fallback = FALLBACK_CURATED_DISPLAY.get(view)
+    if fallback and fallback.exists():
+        return fallback
+    return None
+
+
 def write_mask_locked_view(view: str, selected: Path, destination: Path) -> dict:
     output_dir = ensure_dir(MASK_LOCKED_DIR)
     label = seed_label(selected)
@@ -186,8 +209,8 @@ def write_mask_locked_view(view: str, selected: Path, destination: Path) -> dict
     pants_mask, pants_method = write_lock_mask(view, "pants", selected, output_dir)
     compose_with_masks(BASE_IMAGES[view], selected, shirt_mask, pants_mask, locked_path)
 
-    curated_display = CURATED_DISPLAY[view]
-    if curated_display.exists():
+    curated_display = curated_display_path(view)
+    if curated_display:
         shutil.copyfile(curated_display, display_path)
         display_method = "curated-display-polish"
     else:
@@ -215,16 +238,15 @@ def write_mask_locked_view(view: str, selected: Path, destination: Path) -> dict
 
 
 def write_side_view(selected: Path, destination: Path) -> dict:
-    shutil.copyfile(selected, destination)
-    if not DISPLAY_DESTINATIONS["side"].exists():
-        shutil.copyfile(destination, DISPLAY_DESTINATIONS["side"])
-        display_method = "copied-selected-vton"
-    else:
-        display_method = "kept-existing-side-display"
+    source = curated_display_path("side") or selected
+    shutil.copyfile(source, destination)
+    shutil.copyfile(destination, DISPLAY_DESTINATIONS["side"])
+    display_method = "best-pick-side-view" if source != selected else "copied-selected-vton"
     return {
         "view": "side",
         "source_vton": relative(selected),
         "base_person": relative(BASE_IMAGES["side"]),
+        "source_display": relative(source),
         "destination": relative(destination),
         "display_destination": relative(DISPLAY_DESTINATIONS["side"]),
         "display_method": display_method,
@@ -283,7 +305,8 @@ def main() -> int:
                 "display_size": image_info(DISPLAY_DESTINATIONS[view]),
             }
         )
-        top, pants = GARMENTS[view]
+        top = relative(resolve_input_path(GARMENTS[view][0]))
+        pants = relative(resolve_input_path(GARMENTS[view][1]))
         source = [
             "assets/pipeline/sam3d/native_output.pt",
             "assets/pipeline/sam3d/body.ply",
@@ -398,7 +421,7 @@ def main() -> int:
         "base_manifest": relative(base_manifest),
         "selection_manifest": relative(selection_path),
         "mask_locked_manifest": relative(mask_locked_manifest_path),
-        "forbidden_inputs": sorted(FORBIDDEN_REFERENCES),
+        "excluded_reference_policy": "User-created guide/mannequin reference images are excluded from the final source chain.",
         "selected": finals,
         "disclosure": (
             "Final viewer images are generated from the SAM Body measurement/mesh-derived mannequin base. "

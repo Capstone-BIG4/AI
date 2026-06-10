@@ -5,15 +5,15 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageChops, ImageFilter, ImageOps
 
-from pipeline_common import PIPELINE, ROOT, ensure_dir, image_info, relative, write_json
+from pipeline_common import PIPELINE, ROOT, ensure_dir, image_info, relative, resolve_input_path, write_json
 
 
 INPUTS = {
-    "person": ROOT / "image" / "은수형 사진.jpg",
-    "top_front": ROOT / "image" / "top_front.png",
-    "top_back": ROOT / "image" / "top_back.png",
-    "pants_front": ROOT / "image" / "front_pants.png",
-    "pants_back": ROOT / "image" / "back_pants.png",
+    "person": resolve_input_path("person"),
+    "top_front": resolve_input_path("top_front"),
+    "top_back": resolve_input_path("top_back"),
+    "pants_front": resolve_input_path("pants_front"),
+    "pants_back": resolve_input_path("pants_back"),
 }
 
 

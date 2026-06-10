@@ -57,17 +57,17 @@ export const steps = [
 
 export const viewerAssets = {
   front: {
-    src: "/assets/results/display/sam-body-only-front-contrast.png",
+    src: "/assets/results/display/sam-body-only-front-contrast.png?v=viewer-bg-match-20260610",
     alt: "앞면 마네킹 가상피팅 결과",
     caption: "SAM body locked front view"
   },
   side: {
-    src: "/assets/results/display/sam-body-only-side-contrast.png",
+    src: "/assets/results/display/sam-body-only-side-contrast.png?v=viewer-bg-match-20260610",
     alt: "옆면 마네킹 가상피팅 결과",
     caption: "SAM body generated side view"
   },
   back: {
-    src: "/assets/results/display/sam-body-only-back-contrast.png",
+    src: "/assets/results/display/sam-body-only-back-contrast.png?v=viewer-bg-match-20260610",
     alt: "뒷면 마네킹 가상피팅 결과",
     caption: "SAM body locked back view"
   }

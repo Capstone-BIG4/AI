@@ -1,28 +1,37 @@
 from __future__ import annotations
 
 import argparse
+import os
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
-from pipeline_common import PIPELINE, ROOT, ensure_dir, image_info, now_iso, read_json, relative, write_json
+from pipeline_common import PIPELINE, ROOT, ensure_dir, image_info, load_env_without_printing, now_iso, read_json, relative, resolve_input_path, write_json
 
 
-WEIGHTS_DIR = ROOT / "external" / "fashn-vton-1.5" / "weights"
+def weights_dir() -> Path:
+    env = load_env_without_printing()
+    configured = os.environ.get("FASHN_WEIGHTS_DIR") or env.get("FASHN_WEIGHTS_DIR")
+    if configured:
+        return Path(configured).expanduser()
+    return ROOT / "external" / "fashn-vton-1.5" / "weights"
+
+
 BASE_MANIFEST = PIPELINE / "sam_body_only" / "base" / "sam_body_only_base_manifest.json"
 OUT_DIR = PIPELINE / "sam_body_only" / "fashn"
+MANIFEST_PATH = OUT_DIR / "sam_body_only_fashn_candidates.json"
 GARMENTS = {
     "front": {
-        "top": ROOT / "image" / "top_front.png",
-        "pants": ROOT / "image" / "front_pants.png",
+        "top": "top_front",
+        "pants": "pants_front",
     },
     "side": {
-        "top": ROOT / "image" / "top_front.png",
-        "pants": ROOT / "image" / "front_pants.png",
+        "top": "top_front",
+        "pants": "pants_front",
     },
     "back": {
-        "top": ROOT / "image" / "top_back.png",
-        "pants": ROOT / "image" / "back_pants.png",
+        "top": "top_back",
+        "pants": "pants_back",
     },
 }
 FORBIDDEN_REFERENCES = {
@@ -82,6 +91,22 @@ def base_path_for(view: str, base_manifest: dict) -> Path:
     return ROOT / item["path"]
 
 
+def retained_candidates(current_views: set[str]) -> list[dict]:
+    if not MANIFEST_PATH.exists():
+        return []
+    manifest = read_json(MANIFEST_PATH)
+    return [candidate for candidate in manifest.get("candidates", []) if candidate.get("view") not in current_views]
+
+
+def contact_sheet_items(candidates: list[dict]) -> list[tuple[str, Path]]:
+    items = []
+    for candidate in candidates:
+        image_path = ROOT / candidate["path"]
+        if image_path.exists():
+            items.append((f"{candidate.get('view', 'view')} seed{candidate.get('seed', '')}", image_path))
+    return items
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--views", nargs="+", default=["front", "side", "back"])
@@ -90,10 +115,11 @@ def main() -> int:
     parser.add_argument("--guidance", type=float, default=1.65)
     args = parser.parse_args()
 
+    resolved_weights = weights_dir()
     for required in (
-        WEIGHTS_DIR / "model.safetensors",
-        WEIGHTS_DIR / "dwpose" / "yolox_l.onnx",
-        WEIGHTS_DIR / "dwpose" / "dw-ll_ucoco_384.onnx",
+        resolved_weights / "model.safetensors",
+        resolved_weights / "dwpose" / "yolox_l.onnx",
+        resolved_weights / "dwpose" / "dw-ll_ucoco_384.onnx",
         BASE_MANIFEST,
     ):
         if not required.exists():
@@ -103,21 +129,22 @@ def main() -> int:
 
     base_manifest = read_json(BASE_MANIFEST)
     ensure_dir(OUT_DIR)
-    pipeline = TryOnPipeline(weights_dir=str(WEIGHTS_DIR), device="cuda")
-    candidates = []
-    sheet_items = []
+    pipeline = TryOnPipeline(weights_dir=str(resolved_weights), device="cuda")
+    candidates = retained_candidates(set(args.views))
     for view in args.views:
         base_path = base_path_for(view, base_manifest)
         source = Image.open(base_path).convert("RGB")
         original_size = source.size
-        top = Image.open(GARMENTS[view]["top"]).convert("RGB")
-        pants = Image.open(GARMENTS[view]["pants"]).convert("RGB")
+        top_garment_path = resolve_input_path(GARMENTS[view]["top"])
+        pants_garment_path = resolve_input_path(GARMENTS[view]["pants"])
+        top = Image.open(top_garment_path).convert("RGB")
+        pants = Image.open(pants_garment_path).convert("RGB")
         view_dir = ensure_dir(OUT_DIR / view)
         for seed in args.seeds:
             top_generated = run_stage(pipeline, source, top, "tops", seed, args.timesteps, args.guidance)
             top_generated = resize_back(top_generated, original_size)
-            top_path = view_dir / f"seed{seed}_top.png"
-            top_generated.save(top_path)
+            top_stage_path = view_dir / f"seed{seed}_top.png"
+            top_generated.save(top_stage_path)
 
             final_generated = run_stage(pipeline, top_generated, pants, "bottoms", seed + 101, args.timesteps, args.guidance)
             final_generated = resize_back(final_generated, original_size)
@@ -129,9 +156,9 @@ def main() -> int:
                 "assets/pipeline/sam3d/body.ply",
                 "assets/pipeline/viewer_hq/sam_measurements.json",
                 "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
-                relative(top_path),
-                relative(GARMENTS[view]["top"]),
-                relative(GARMENTS[view]["pants"]),
+                relative(top_garment_path),
+                relative(pants_garment_path),
+                relative(top_stage_path),
             ]
             if set(source_chain) & FORBIDDEN_REFERENCES:
                 raise AssertionError(f"Forbidden guide/mannequin reference in candidate source for {view}")
@@ -140,11 +167,11 @@ def main() -> int:
                     "id": f"{view}-sam-body-only-fashn-seed{seed}-top-then-pants",
                     "view": view,
                     "path": relative(final_path),
-                    "upper_stage": relative(top_path),
+                    "upper_stage": relative(top_stage_path),
                     "base_person": relative(base_path),
                     "source": source_chain,
-                    "top_garment": relative(GARMENTS[view]["top"]),
-                    "pants_garment": relative(GARMENTS[view]["pants"]),
+                    "top_garment": relative(top_garment_path),
+                    "pants_garment": relative(pants_garment_path),
                     "model": "fashn-vton-v1.5-local",
                     "seed": seed,
                     "timesteps": args.timesteps,
@@ -154,17 +181,22 @@ def main() -> int:
                     "notes": "Generated from the SAM Body measurement-derived mannequin base. guide/mannequin reference images are not used.",
                 }
             )
-            sheet_items.append((f"{view} seed{seed}", final_path))
             print(f"{view}_seed{seed}={relative(final_path)}")
 
     contact_sheet = OUT_DIR / "contact_sheet.png"
-    make_contact_sheet(sheet_items, contact_sheet)
+    make_contact_sheet(contact_sheet_items(candidates), contact_sheet)
+    manifest_views = []
+    for candidate in candidates:
+        view = candidate.get("view")
+        if view and view not in manifest_views:
+            manifest_views.append(view)
     manifest = {
         "generated_at": now_iso(),
         "model": "fashn-vton-v1.5-local",
-        "weights_dir": relative(WEIGHTS_DIR),
+        "weights_dir": relative(resolved_weights),
         "base_manifest": relative(BASE_MANIFEST),
-        "views": args.views,
+        "views": manifest_views,
+        "last_run_views": args.views,
         "seeds": args.seeds,
         "timesteps": args.timesteps,
         "guidance": args.guidance,
@@ -173,9 +205,9 @@ def main() -> int:
         "contact_sheet": relative(contact_sheet),
         "disclosure": "Generated candidates use only the SAM Body measurement-derived mannequin base as the person target. User-created guide/mannequin reference images are excluded.",
     }
-    write_json(OUT_DIR / "sam_body_only_fashn_candidates.json", manifest)
+    write_json(MANIFEST_PATH, manifest)
     print("status=success")
-    print(f"manifest={relative(OUT_DIR / 'sam_body_only_fashn_candidates.json')}")
+    print(f"manifest={relative(MANIFEST_PATH)}")
     print(f"contact_sheet={relative(contact_sheet)}")
     return 0
 

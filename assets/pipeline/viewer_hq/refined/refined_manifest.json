@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-06-08T16:52:14Z",
+  "source_manifest": "assets/pipeline/viewer_hq/candidates/candidate_manifest.json",
+  "refined": [
+    {
+      "id": "front-refined-000-source-cache",
+      "view": "front",
+      "path": "assets/pipeline/viewer_hq/refined/front/front-candidate-000-source-cache_refined.png",
+      "source_candidate": "assets/pipeline/viewer_hq/candidates/front/candidate_000_source_cache.png",
+      "masks": {
+        "shirt": "assets/pipeline/viewer_hq/refined/masks/front/front-candidate-000-source-cache_shirt_mask.png",
+        "pants": "assets/pipeline/viewer_hq/refined/masks/front/front-candidate-000-source-cache_pants_mask.png",
+        "logo": "assets/pipeline/viewer_hq/refined/masks/front/front-candidate-000-source-cache_logo_mask.png"
+      },
+      "method": "pixel-preserving-detail-mask-pass",
+      "notes": "The current selected cache already meets the target quality, so this pass preserves pixels and records detail masks for logo/boundary review."
+    },
+    {
+      "id": "side-refined-000-source-cache",
+      "view": "side",
+      "path": "assets/pipeline/viewer_hq/refined/side/side-candidate-000-source-cache_refined.png",
+      "source_candidate": "assets/pipeline/viewer_hq/candidates/side/candidate_000_source_cache.png",
+      "masks": {
+        "shirt": "assets/pipeline/viewer_hq/refined/masks/side/side-candidate-000-source-cache_shirt_mask.png",
+        "pants": "assets/pipeline/viewer_hq/refined/masks/side/side-candidate-000-source-cache_pants_mask.png",
+        "logo": "assets/pipeline/viewer_hq/refined/masks/side/side-candidate-000-source-cache_logo_mask.png"
+      },
+      "method": "pixel-preserving-detail-mask-pass",
+      "notes": "The current selected cache already meets the target quality, so this pass preserves pixels and records detail masks for logo/boundary review."
+    },
+    {
+      "id": "back-refined-000-source-cache",
+      "view": "back",
+      "path": "assets/pipeline/viewer_hq/refined/back/back-candidate-000-source-cache_refined.png",
+      "source_candidate": "assets/pipeline/viewer_hq/candidates/back/candidate_000_source_cache.png",
+      "masks": {
+        "shirt": "assets/pipeline/viewer_hq/refined/masks/back/back-candidate-000-source-cache_shirt_mask.png",
+        "pants": "assets/pipeline/viewer_hq/refined/masks/back/back-candidate-000-source-cache_pants_mask.png",
+        "logo": "assets/pipeline/viewer_hq/refined/masks/back/back-candidate-000-source-cache_logo_mask.png"
+      },
+      "method": "pixel-preserving-detail-mask-pass",
+      "notes": "The current selected cache already meets the target quality, so this pass preserves pixels and records detail masks for logo/boundary review."
+    }
+  ]
+}

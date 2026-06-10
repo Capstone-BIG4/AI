@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T04:13:08Z",
+  "generated_at": "2026-06-10T14:09:58Z",
   "method": "front-back-sam-body-fixed-mask-lock",
   "outputs": [
     {
@@ -13,8 +13,8 @@
       "destination": "assets/results/sam-body-only-front.png",
       "display_destination": "assets/results/display/sam-body-only-front-contrast.png",
       "mask_methods": {
-        "shirt": "curated-best-pick-mask",
-        "pants": "curated-best-pick-mask"
+        "shirt": "color-fallback-from-selected-vton-without-hint-mask",
+        "pants": "color-fallback-from-selected-vton-without-hint-mask"
       },
       "display_method": "curated-display-polish"
     },
@@ -29,8 +29,8 @@
       "destination": "assets/results/sam-body-only-back.png",
       "display_destination": "assets/results/display/sam-body-only-back-contrast.png",
       "mask_methods": {
-        "shirt": "curated-best-pick-mask",
-        "pants": "curated-best-pick-mask"
+        "shirt": "color-fallback-from-selected-vton-without-hint-mask",
+        "pants": "color-fallback-from-selected-vton-without-hint-mask"
       },
       "display_method": "curated-display-polish"
     }

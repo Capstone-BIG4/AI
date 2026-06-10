@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-06-08T16:51:43Z",
+  "source_measurements": "assets/pipeline/viewer_hq/sam_measurements.json",
+  "resolution": [
+    1024,
+    1536
+  ],
+  "outputs": {
+    "front": {
+      "silhouette": "assets/pipeline/viewer_hq/guides/front_silhouette.png",
+      "depth": "assets/pipeline/viewer_hq/guides/front_depth.png",
+      "normal": "assets/pipeline/viewer_hq/guides/front_normal.png",
+      "line": "assets/pipeline/viewer_hq/guides/front_line.png",
+      "top_mask": "assets/pipeline/viewer_hq/guides/front_top_mask.png",
+      "pants_mask": "assets/pipeline/viewer_hq/guides/front_pants_mask.png"
+    },
+    "side": {
+      "silhouette": "assets/pipeline/viewer_hq/guides/side_silhouette.png",
+      "depth": "assets/pipeline/viewer_hq/guides/side_depth.png",
+      "normal": "assets/pipeline/viewer_hq/guides/side_normal.png",
+      "line": "assets/pipeline/viewer_hq/guides/side_line.png",
+      "top_mask": "assets/pipeline/viewer_hq/guides/side_top_mask.png",
+      "pants_mask": "assets/pipeline/viewer_hq/guides/side_pants_mask.png"
+    },
+    "back": {
+      "silhouette": "assets/pipeline/viewer_hq/guides/back_silhouette.png",
+      "depth": "assets/pipeline/viewer_hq/guides/back_depth.png",
+      "normal": "assets/pipeline/viewer_hq/guides/back_normal.png",
+      "line": "assets/pipeline/viewer_hq/guides/back_line.png",
+      "top_mask": "assets/pipeline/viewer_hq/guides/back_top_mask.png",
+      "pants_mask": "assets/pipeline/viewer_hq/guides/back_pants_mask.png"
+    }
+  },
+  "note": "Neutral arms-down guides sized from SAM body measurements. These are control/proof assets, not final viewer images."
+}

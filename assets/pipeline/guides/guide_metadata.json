@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-06-10T11:17:54Z",
+  "renderer": "lightweight_python_orthographic_rasterizer",
+  "body_artifact": "assets/pipeline/sam3d/body.ply",
+  "native_sam_output": "assets/pipeline/sam3d/native_output.pt",
+  "source_output_schema": "assets/pipeline/sam3d/source_output_schema.json",
+  "resolution": [
+    1024,
+    1024
+  ],
+  "views": {
+    "front": 0.0,
+    "side": 90.0,
+    "back": 180.0
+  },
+  "outputs": {
+    "front": {
+      "silhouette": "assets/pipeline/guides/front_silhouette.png",
+      "depth": "assets/pipeline/guides/front_depth.png",
+      "normal": "assets/pipeline/guides/front_normal.png",
+      "coarse_part_map": "assets/pipeline/guides/front_coarse_part_map.png"
+    },
+    "side": {
+      "silhouette": "assets/pipeline/guides/side_silhouette.png",
+      "depth": "assets/pipeline/guides/side_depth.png",
+      "normal": "assets/pipeline/guides/side_normal.png",
+      "coarse_part_map": "assets/pipeline/guides/side_coarse_part_map.png"
+    },
+    "back": {
+      "silhouette": "assets/pipeline/guides/back_silhouette.png",
+      "depth": "assets/pipeline/guides/back_depth.png",
+      "normal": "assets/pipeline/guides/back_normal.png",
+      "coarse_part_map": "assets/pipeline/guides/back_coarse_part_map.png"
+    }
+  },
+  "part_map_note": "coarse_part_map is a vertical anatomical region map, not DensePose."
+}

@@ -1,0 +1,78 @@
+{
+  "sources": {
+    "top_front": "runtime/inputs/top-front/top_front.png",
+    "top_back": "runtime/inputs/top-back/top_back.png",
+    "pants_front": "runtime/inputs/pants-front/front_pants.png",
+    "pants_back": "runtime/inputs/pants-back/back_pants.png"
+  },
+  "outputs": {
+    "top_front_cutout": "assets/pipeline/garments/top_front_cutout.png",
+    "top_back_cutout": "assets/pipeline/garments/top_back_cutout.png",
+    "pants_front_cutout": "assets/pipeline/garments/pants_front_cutout.png",
+    "pants_back_cutout": "assets/pipeline/garments/pants_back_cutout.png",
+    "top_front_logo_mask": "assets/pipeline/garments/top_front_logo_mask.png",
+    "top_back_logo_mask": "assets/pipeline/garments/top_back_logo_mask.png",
+    "pants_back_pocket_mask": "assets/pipeline/garments/pants_back_pocket_mask.png"
+  },
+  "view_assignment": {
+    "front": [
+      "top_front_cutout",
+      "pants_front_cutout"
+    ],
+    "side": [
+      "top_front_cutout",
+      "top_back_cutout",
+      "pants_front_cutout",
+      "pants_back_cutout"
+    ],
+    "back": [
+      "top_back_cutout",
+      "pants_back_cutout"
+    ]
+  },
+  "method": "alpha_preserve_or_corner_background_removal_plus_light_detail_masks",
+  "image_info": {
+    "top_front_cutout": {
+      "path": "assets/pipeline/garments/top_front_cutout.png",
+      "width": 816,
+      "height": 692,
+      "mode": "RGBA"
+    },
+    "top_back_cutout": {
+      "path": "assets/pipeline/garments/top_back_cutout.png",
+      "width": 797,
+      "height": 696,
+      "mode": "RGBA"
+    },
+    "pants_front_cutout": {
+      "path": "assets/pipeline/garments/pants_front_cutout.png",
+      "width": 536,
+      "height": 728,
+      "mode": "RGBA"
+    },
+    "pants_back_cutout": {
+      "path": "assets/pipeline/garments/pants_back_cutout.png",
+      "width": 551,
+      "height": 753,
+      "mode": "RGBA"
+    },
+    "top_front_logo_mask": {
+      "path": "assets/pipeline/garments/top_front_logo_mask.png",
+      "width": 816,
+      "height": 692,
+      "mode": "L"
+    },
+    "top_back_logo_mask": {
+      "path": "assets/pipeline/garments/top_back_logo_mask.png",
+      "width": 797,
+      "height": 696,
+      "mode": "L"
+    },
+    "pants_back_pocket_mask": {
+      "path": "assets/pipeline/garments/pants_back_pocket_mask.png",
+      "width": 551,
+      "height": 753,
+      "mode": "L"
+    }
+  }
+}

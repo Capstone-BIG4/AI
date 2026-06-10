@@ -65,5 +65,278 @@
     "back": {
       "path": "assets/pipeline/sam_body_only/mask_locked/back_sam_locked_seed2101_display.png"
     }
+  },
+  "mode": "sam-body-only-mask-locked-generated-fixed-sample",
+  "results": [
+    {
+      "id": "sam-body-only-front",
+      "role": "sam-body-only-generated-viewer-front",
+      "view": "front",
+      "path": "assets/results/sam-body-only-front.png",
+      "display_path": "assets/results/display/sam-body-only-front-contrast.png",
+      "source": [
+        "assets/pipeline/sam3d/native_output.pt",
+        "assets/pipeline/sam3d/body.ply",
+        "assets/pipeline/viewer_hq/sam_measurements.json",
+        "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
+        "assets/pipeline/sam_body_only/base/front_sam_body_only_base.png",
+        "assets/pipeline/sam_body_only/fashn/front/seed2101_top_then_pants.png",
+        "runtime/inputs/top-front/top_front.png",
+        "runtime/inputs/pants-front/pants_cloth.png",
+        "assets/pipeline/sam_body_only/fashn/sam_body_only_selection.json",
+        "assets/pipeline/sam_body_only/mask_locked/front_shirt_mask.png",
+        "assets/pipeline/sam_body_only/mask_locked/front_pants_mask.png",
+        "assets/pipeline/sam_body_only/mask_locked/front_sam_locked_seed2101.png",
+        "assets/pipeline/sam_body_only/mask_locked/front_sam_locked_seed2101_display.png",
+        "assets/pipeline/sam_body_only/mask_locked/mask_locked_selection.json"
+      ],
+      "generated_by": [
+        "sam-3d-body",
+        "sam-body-measurement-extraction",
+        "sam-body-only-mannequin-base-rendering",
+        "fashn-vton-v1.5-local",
+        "top-then-pants-diffusion-generation",
+        "sam-body-fixed-garment-mask-lock",
+        "display-polished-best-pick"
+      ],
+      "manual_edits": [
+        "locked generated garment pixels to selected shirt/pants masks",
+        "preserved SAM body base outside garment masks",
+        "excluded guide/mannequin reference images from final source chain"
+      ],
+      "display_size": {
+        "path": "assets/results/sam-body-only-front.png",
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "claim_level": "actual-sam-body-only-mask-locked-generated-fixed-sample",
+      "notes": "Final viewer result generated from the SAM Body measurement/mesh-derived mannequin base. Front/back preserve the SAM body base outside garment lock masks; guide/mannequin reference images are not used."
+    },
+    {
+      "id": "sam-body-only-side",
+      "role": "sam-body-only-generated-viewer-side",
+      "view": "side",
+      "path": "assets/results/sam-body-only-side.png",
+      "display_path": "assets/results/display/sam-body-only-side-contrast.png",
+      "source": [
+        "assets/pipeline/sam3d/native_output.pt",
+        "assets/pipeline/sam3d/body.ply",
+        "assets/pipeline/viewer_hq/sam_measurements.json",
+        "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
+        "assets/pipeline/sam_body_only/base/side_sam_body_only_base.png",
+        "assets/pipeline/sam_body_only/fashn/side/seed2201_top_then_pants.png",
+        "runtime/inputs/top-front/top_front.png",
+        "runtime/inputs/pants-front/pants_cloth.png",
+        "assets/pipeline/sam_body_only/fashn/sam_body_only_selection.json"
+      ],
+      "generated_by": [
+        "sam-3d-body",
+        "sam-body-measurement-extraction",
+        "sam-body-only-mannequin-base-rendering",
+        "fashn-vton-v1.5-local",
+        "top-then-pants-diffusion-generation",
+        "manual-visual-best-pick"
+      ],
+      "manual_edits": [
+        "selected generated candidate after visual review",
+        "excluded guide/mannequin reference images from final source chain"
+      ],
+      "display_size": {
+        "path": "assets/results/sam-body-only-side.png",
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "claim_level": "actual-sam-body-only-mask-locked-generated-fixed-sample",
+      "notes": "Final viewer result generated from the SAM Body measurement/mesh-derived mannequin base. Front/back preserve the SAM body base outside garment lock masks; guide/mannequin reference images are not used."
+    },
+    {
+      "id": "sam-body-only-back",
+      "role": "sam-body-only-generated-viewer-back",
+      "view": "back",
+      "path": "assets/results/sam-body-only-back.png",
+      "display_path": "assets/results/display/sam-body-only-back-contrast.png",
+      "source": [
+        "assets/pipeline/sam3d/native_output.pt",
+        "assets/pipeline/sam3d/body.ply",
+        "assets/pipeline/viewer_hq/sam_measurements.json",
+        "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
+        "assets/pipeline/sam_body_only/base/back_sam_body_only_base.png",
+        "assets/pipeline/sam_body_only/fashn/back/seed2101_top_then_pants.png",
+        "runtime/inputs/top-back/top_back.png",
+        "runtime/inputs/pants-back/pants_cloth.png",
+        "assets/pipeline/sam_body_only/fashn/sam_body_only_selection.json",
+        "assets/pipeline/sam_body_only/mask_locked/back_shirt_mask.png",
+        "assets/pipeline/sam_body_only/mask_locked/back_pants_mask.png",
+        "assets/pipeline/sam_body_only/mask_locked/back_sam_locked_seed2101.png",
+        "assets/pipeline/sam_body_only/mask_locked/back_sam_locked_seed2101_display.png",
+        "assets/pipeline/sam_body_only/mask_locked/mask_locked_selection.json"
+      ],
+      "generated_by": [
+        "sam-3d-body",
+        "sam-body-measurement-extraction",
+        "sam-body-only-mannequin-base-rendering",
+        "fashn-vton-v1.5-local",
+        "top-then-pants-diffusion-generation",
+        "sam-body-fixed-garment-mask-lock",
+        "display-polished-best-pick"
+      ],
+      "manual_edits": [
+        "locked generated garment pixels to selected shirt/pants masks",
+        "preserved SAM body base outside garment masks",
+        "excluded guide/mannequin reference images from final source chain"
+      ],
+      "display_size": {
+        "path": "assets/results/sam-body-only-back.png",
+        "width": 1024,
+        "height": 1536,
+        "mode": "RGB"
+      },
+      "claim_level": "actual-sam-body-only-mask-locked-generated-fixed-sample",
+      "notes": "Final viewer result generated from the SAM Body measurement/mesh-derived mannequin base. Front/back preserve the SAM body base outside garment lock masks; guide/mannequin reference images are not used."
+    }
+  ],
+  "technicalPipeline": {
+    "samBodyOnlyViewer": {
+      "generated_at": "2026-06-10T14:09:58Z",
+      "model": "fashn-vton-v1.5-local + sam-body-fixed-mask-lock",
+      "base_manifest": "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
+      "selection_manifest": "assets/pipeline/sam_body_only/fashn/sam_body_only_selection.json",
+      "mask_locked_manifest": "assets/pipeline/sam_body_only/mask_locked/mask_locked_selection.json",
+      "excluded_reference_policy": "User-created guide/mannequin reference images are excluded from the final source chain.",
+      "selected": [
+        {
+          "id": "sam-body-only-front",
+          "role": "sam-body-only-generated-viewer-front",
+          "view": "front",
+          "path": "assets/results/sam-body-only-front.png",
+          "display_path": "assets/results/display/sam-body-only-front-contrast.png",
+          "source": [
+            "assets/pipeline/sam3d/native_output.pt",
+            "assets/pipeline/sam3d/body.ply",
+            "assets/pipeline/viewer_hq/sam_measurements.json",
+            "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
+            "assets/pipeline/sam_body_only/base/front_sam_body_only_base.png",
+            "assets/pipeline/sam_body_only/fashn/front/seed2101_top_then_pants.png",
+            "runtime/inputs/top-front/top_front.png",
+            "runtime/inputs/pants-front/pants_cloth.png",
+            "assets/pipeline/sam_body_only/fashn/sam_body_only_selection.json",
+            "assets/pipeline/sam_body_only/mask_locked/front_shirt_mask.png",
+            "assets/pipeline/sam_body_only/mask_locked/front_pants_mask.png",
+            "assets/pipeline/sam_body_only/mask_locked/front_sam_locked_seed2101.png",
+            "assets/pipeline/sam_body_only/mask_locked/front_sam_locked_seed2101_display.png",
+            "assets/pipeline/sam_body_only/mask_locked/mask_locked_selection.json"
+          ],
+          "generated_by": [
+            "sam-3d-body",
+            "sam-body-measurement-extraction",
+            "sam-body-only-mannequin-base-rendering",
+            "fashn-vton-v1.5-local",
+            "top-then-pants-diffusion-generation",
+            "sam-body-fixed-garment-mask-lock",
+            "display-polished-best-pick"
+          ],
+          "manual_edits": [
+            "locked generated garment pixels to selected shirt/pants masks",
+            "preserved SAM body base outside garment masks",
+            "excluded guide/mannequin reference images from final source chain"
+          ],
+          "display_size": {
+            "path": "assets/results/sam-body-only-front.png",
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB"
+          },
+          "claim_level": "actual-sam-body-only-mask-locked-generated-fixed-sample",
+          "notes": "Final viewer result generated from the SAM Body measurement/mesh-derived mannequin base. Front/back preserve the SAM body base outside garment lock masks; guide/mannequin reference images are not used."
+        },
+        {
+          "id": "sam-body-only-side",
+          "role": "sam-body-only-generated-viewer-side",
+          "view": "side",
+          "path": "assets/results/sam-body-only-side.png",
+          "display_path": "assets/results/display/sam-body-only-side-contrast.png",
+          "source": [
+            "assets/pipeline/sam3d/native_output.pt",
+            "assets/pipeline/sam3d/body.ply",
+            "assets/pipeline/viewer_hq/sam_measurements.json",
+            "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
+            "assets/pipeline/sam_body_only/base/side_sam_body_only_base.png",
+            "assets/pipeline/sam_body_only/fashn/side/seed2201_top_then_pants.png",
+            "runtime/inputs/top-front/top_front.png",
+            "runtime/inputs/pants-front/pants_cloth.png",
+            "assets/pipeline/sam_body_only/fashn/sam_body_only_selection.json"
+          ],
+          "generated_by": [
+            "sam-3d-body",
+            "sam-body-measurement-extraction",
+            "sam-body-only-mannequin-base-rendering",
+            "fashn-vton-v1.5-local",
+            "top-then-pants-diffusion-generation",
+            "manual-visual-best-pick"
+          ],
+          "manual_edits": [
+            "selected generated candidate after visual review",
+            "excluded guide/mannequin reference images from final source chain"
+          ],
+          "display_size": {
+            "path": "assets/results/sam-body-only-side.png",
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB"
+          },
+          "claim_level": "actual-sam-body-only-mask-locked-generated-fixed-sample",
+          "notes": "Final viewer result generated from the SAM Body measurement/mesh-derived mannequin base. Front/back preserve the SAM body base outside garment lock masks; guide/mannequin reference images are not used."
+        },
+        {
+          "id": "sam-body-only-back",
+          "role": "sam-body-only-generated-viewer-back",
+          "view": "back",
+          "path": "assets/results/sam-body-only-back.png",
+          "display_path": "assets/results/display/sam-body-only-back-contrast.png",
+          "source": [
+            "assets/pipeline/sam3d/native_output.pt",
+            "assets/pipeline/sam3d/body.ply",
+            "assets/pipeline/viewer_hq/sam_measurements.json",
+            "assets/pipeline/sam_body_only/base/sam_body_only_base_manifest.json",
+            "assets/pipeline/sam_body_only/base/back_sam_body_only_base.png",
+            "assets/pipeline/sam_body_only/fashn/back/seed2101_top_then_pants.png",
+            "runtime/inputs/top-back/top_back.png",
+            "runtime/inputs/pants-back/pants_cloth.png",
+            "assets/pipeline/sam_body_only/fashn/sam_body_only_selection.json",
+            "assets/pipeline/sam_body_only/mask_locked/back_shirt_mask.png",
+            "assets/pipeline/sam_body_only/mask_locked/back_pants_mask.png",
+            "assets/pipeline/sam_body_only/mask_locked/back_sam_locked_seed2101.png",
+            "assets/pipeline/sam_body_only/mask_locked/back_sam_locked_seed2101_display.png",
+            "assets/pipeline/sam_body_only/mask_locked/mask_locked_selection.json"
+          ],
+          "generated_by": [
+            "sam-3d-body",
+            "sam-body-measurement-extraction",
+            "sam-body-only-mannequin-base-rendering",
+            "fashn-vton-v1.5-local",
+            "top-then-pants-diffusion-generation",
+            "sam-body-fixed-garment-mask-lock",
+            "display-polished-best-pick"
+          ],
+          "manual_edits": [
+            "locked generated garment pixels to selected shirt/pants masks",
+            "preserved SAM body base outside garment masks",
+            "excluded guide/mannequin reference images from final source chain"
+          ],
+          "display_size": {
+            "path": "assets/results/sam-body-only-back.png",
+            "width": 1024,
+            "height": 1536,
+            "mode": "RGB"
+          },
+          "claim_level": "actual-sam-body-only-mask-locked-generated-fixed-sample",
+          "notes": "Final viewer result generated from the SAM Body measurement/mesh-derived mannequin base. Front/back preserve the SAM body base outside garment lock masks; guide/mannequin reference images are not used."
+        }
+      ],
+      "disclosure": "Final viewer images are generated from the SAM Body measurement/mesh-derived mannequin base. Front/back are mask-locked so SAM body pixels outside the shirt and pants regions are preserved. User-created guide/mannequin reference images are excluded from the final source chain."
+    },
+    "disclosure": "SAM 3D Body is used to recover the fixed user's body/mesh and derive mannequin proportions/base views. The final front/side/back viewer uses FASHN VTON generated images from that SAM-derived base, with front/back locked back to the SAM body outside garment masks."
   }
 }

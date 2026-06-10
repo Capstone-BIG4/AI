@@ -9,6 +9,7 @@ ASSETS = ROOT / "assets"
 DOCS = ROOT / "docs"
 RUNTIME = ROOT / "runtime"
 UPLOADS = RUNTIME / "uploads"
+CURRENT_INPUTS = RUNTIME / "inputs"
 
 
 def project_path(path: str) -> Path:

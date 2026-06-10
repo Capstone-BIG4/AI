@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-06-08T10:55:42Z",
+  "python": {
+    "executable": "/home/bys0626/miniconda3/envs/bys/bin/python",
+    "version": "3.10.20 | packaged by conda-forge | (main, Mar  5 2026, 16:42:22) [GCC 14.3.0]",
+    "version_info": [
+      3,
+      10,
+      20
+    ]
+  },
+  "platform": {
+    "system": "Linux",
+    "release": "5.15.0-179-generic",
+    "machine": "x86_64"
+  },
+  "disk": {
+    "workspace": "/home/bys0626/some",
+    "free_gb": 391.59,
+    "total_gb": 1105.79
+  },
+  "commands": {
+    "git": true,
+    "ffmpeg": true,
+    "blender": true,
+    "nvidia_smi": true,
+    "huggingface_cli": true
+  },
+  "env": {
+    "env_file_exists": true,
+    "hf_token_present": true,
+    "hf_token_value_printed": false
+  },
+  "nvidia_smi": {
+    "available": true,
+    "returncode": 0,
+    "stdout_preview": "Mon Jun  8 19:55:42 2026       \n+---------------------------------------------------------------------------------------+\n| NVIDIA-SMI 535.309.01             Driver Version: 535.309.01   CUDA Version: 12.2     |\n|-----------------------------------------+----------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |\n|                                         |                      |               MIG M. |\n|=========================================+======================+======================|\n|   0  NVIDIA GeForce RTX 3090        Off | 00000000:8A:00.0  On |                  N/A |\n| 39%   29C    P8              28W / 350W |    260MiB / 24576MiB |      0%      Default |\n|                                         |                      |                  N/A |\n+-----------------------------------------+----------------------+----------------------+\n                                                                                         \n+---------------------------------------------------------------------------------------+\n| Processes:                                                                            |\n|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |\n|        ID   ID                                                             Usage      |\n|=======================================================================================|\n|    0   N/A  N/A   1250064      C   python                                      254MiB |\n+---------------------------------------------------------------------------------------+\n",
+    "stderr_preview": ""
+  },
+  "torch": {
+    "installed": true,
+    "version": "2.10.0+cu128",
+    "cuda_available": true,
+    "cuda_version": "12.8",
+    "device_count": 1,
+    "devices": [
+      {
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 3090",
+        "total_memory_gb": 23.69
+      }
+    ]
+  }
+}

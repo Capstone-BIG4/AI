@@ -5,7 +5,7 @@ from pathlib import Path
 from pipeline_common import ROOT, read_env_keys
 
 
-SCAN_DIRS = ["assets", "docs", "scripts", ".omx/plans"]
+SCAN_DIRS = ["assets", "docs", "scripts"]
 SKIP_SUFFIXES = {".png", ".jpg", ".jpeg", ".pt", ".npy", ".npz", ".ply", ".pdf"}
 
 

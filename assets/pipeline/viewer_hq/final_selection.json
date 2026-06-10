@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-06-08T16:55:34Z",
+  "scores": "assets/pipeline/viewer_hq/scores.json",
+  "finals": [
+    {
+      "view": "front",
+      "source": "assets/pipeline/viewer_hq/refined/front/front-candidate-000-source-cache_refined.png",
+      "destination": "assets/results/mannequin-front.png",
+      "score": 0.9572,
+      "selected_id": "front-refined-000-source-cache"
+    },
+    {
+      "view": "side",
+      "source": "assets/pipeline/viewer_hq/refined/side/side-candidate-000-source-cache_refined.png",
+      "destination": "assets/results/mannequin-side.png",
+      "score": 0.9376,
+      "selected_id": "side-refined-000-source-cache"
+    },
+    {
+      "view": "back",
+      "source": "assets/pipeline/viewer_hq/refined/back/back-candidate-000-source-cache_refined.png",
+      "destination": "assets/results/mannequin-back.png",
+      "score": 0.956,
+      "selected_id": "back-refined-000-source-cache"
+    }
+  ],
+  "post_steps": [
+    "scripts/09_repair_viewer_cache_manifest.py",
+    "scripts/make_pipeline_contact_sheet.py"
+  ]
+}
