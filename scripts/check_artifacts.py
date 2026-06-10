@@ -74,6 +74,7 @@ REQUIRED_FILES = [
     "assets/results/display/sam-body-only-side-contrast.png",
     "assets/results/display/sam-body-only-back-contrast.png",
     "assets/manifest.json",
+    "docs/developer-guide.md",
     "docs/architecture.md",
     "docs/technical-pipeline.md",
     "docs/model-cards-used.md",

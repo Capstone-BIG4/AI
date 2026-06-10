@@ -1,114 +1,105 @@
 # Virtual Fitting Studio
 
-SAM 3D Body guided virtual fitting demo for a capstone project. The service takes one full-body user photo plus top and pants front/back images, runs a SAM-guided fitting pipeline, and shows a 2.5D viewer with front, side, and back mannequin views.
+SAM 3D Body 기반 가상 피팅 캡스톤 데모입니다. 사용자의 전신 사진 1장과 상의 앞/뒤, 하의 앞/뒤 이미지를 입력받고, SAM으로 추정한 신체 비율과 가이드맵을 기반으로 2D 피팅 결과와 front / side / back 2.5D 마네킹 뷰어를 제공합니다.
 
-The public implementation is organized around the current demo target:
+## 주요 기능
 
-- `frontend/`: production-style studio UI for upload, run, and front/side/back viewer inspection.
-- `backend/app/`: FastAPI service for uploads, run orchestration, job state, result discovery, and static asset delivery.
-- `scripts/`: AI pipeline scripts for preprocessing, SAM 3D Body execution, guide rendering, VTON generation, mask-locked finalization, and artifact checks.
-- `assets/`: selected generated outputs and proof images used by the app.
-- `docs/`: architecture, pipeline, model notes, and review notes.
+- 전신 사진, 상의 앞/뒤, 하의 앞/뒤 총 5장 업로드
+- 업로드 후 `Run Fitting`으로 피팅 플로우 실행
+- 2D 가상 피팅 결과 확인
+- `3D Viewer`에서 front / side / back 마네킹 피팅 결과 전환
+- `Analytics` 화면에서 SAM Body, guide map, 최종 결과 흐름 확인
 
-License: MIT.
+## 실행 방법
 
-## Quick Start
+### 1. 의존성 설치
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
+```
+
+이미 `conda` 환경을 쓰는 경우에는 가상환경 생성 없이 해당 환경에서 설치해도 됩니다.
+
+```bash
+conda activate bys
+python -m pip install -r requirements.txt
+```
+
+### 2. 웹 UI 실행
+
+```bash
 python scripts/dev/run_server.py --port 8000
 ```
 
-Open `http://127.0.0.1:8000`.
+브라우저에서 아래 주소를 엽니다.
 
-For GPU generation, set the required model/API credentials in `.env` and run the GPU mode from the UI or command line:
+```text
+http://127.0.0.1:8000
+```
+
+### 3. GPU 파이프라인 실행
+
+GPU에서 실제 생성 단계를 실행하려면 `.env`를 준비합니다.
+
+```bash
+cp .env.example .env
+```
+
+`.env` 예시:
+
+```env
+HF_TOKEN=
+FASHN_API_KEY=
+CONDA_ENV=bys
+SAM3D_BODY_DIR=external/sam-3d-body
+```
+
+SAM 3D Body 공식 소스는 아래처럼 연결합니다.
 
 ```bash
 git clone https://github.com/facebookresearch/sam-3d-body.git external/sam-3d-body
+```
+
+주요 생성 단계:
+
+```bash
 python scripts/18_build_sam_body_only_mannequin_base.py
 python scripts/19_generate_sam_body_only_fashn_viewer.py --views front back side --seeds 2101 2201
 python scripts/20_select_sam_body_only_viewer.py
 python scripts/10_guard_viewer_contract.py
 ```
 
-## System Architecture
+웹 UI에서는 실행 모드를 `GPU`로 선택한 뒤 `Run Fitting`을 누르면 백엔드가 설정된 파이프라인 단계를 순서대로 실행합니다.
 
-```mermaid
-flowchart LR
-  User[Presenter or user] --> UI[Frontend studio UI]
-  UI --> Uploads[Upload API]
-  UI --> Runs[Run API]
-  Runs --> JobState[Job state manager]
-  JobState --> Pipeline[Pipeline executor]
-  Pipeline --> Scripts[AI scripts]
-  Scripts --> Assets[Generated assets]
-  Assets --> Results[Result API]
-  Results --> UI
-  UI --> Viewer[Front / Side / Back 2.5D viewer]
-```
-
-## AI Pipeline
-
-```mermaid
-flowchart TD
-  A[User photo] --> B[Preprocess crop and masks]
-  C[Top front/back] --> D[Garment preparation]
-  E[Pants front/back] --> D
-  B --> F[SAM 3D Body mesh/body extraction]
-  F --> G[Render front, side, back guides]
-  G --> H[Build SAM body mannequin base]
-  D --> I[VTON candidate generation]
-  H --> I
-  I --> J[Mask-locked garment compositing]
-  J --> K[Viewer contrast and framing polish]
-  K --> L[Front / Side / Back output]
-```
-
-## Runtime Sequence
-
-```mermaid
-sequenceDiagram
-  participant U as User
-  participant F as Frontend
-  participant B as FastAPI
-  participant P as Pipeline
-  participant A as Assets
-
-  U->>F: Upload 5 required photos
-  F->>B: POST /api/uploads/{slot}
-  B->>A: Store runtime upload
-  U->>F: Run Fitting
-  F->>B: POST /api/runs
-  B->>P: Start standard or GPU run
-  P->>A: Write selected results
-  F->>B: GET /api/jobs/{id}
-  F->>B: GET /api/results
-  B->>F: Result paths
-  F->>U: Show 2D result and 3D viewer
-```
-
-## Result Contract
-
-The viewer contract is intentionally simple and presentation-safe:
-
-- `/assets/results/tryon-2d.png`
-- `/assets/results/display/sam-body-only-front-contrast.png`
-- `/assets/results/display/sam-body-only-side-contrast.png`
-- `/assets/results/display/sam-body-only-back-contrast.png`
-
-Run:
+## 검증 방법
 
 ```bash
-python scripts/check_artifacts.py
-python scripts/check_manifest_paths.py
-python scripts/check_token_leaks.py
+make check
 ```
 
-## Documentation
+conda 환경을 지정해서 실행하려면:
 
-- [Architecture](docs/architecture.md)
-- [Technical Pipeline](docs/technical-pipeline.md)
-- [Model Notes](docs/model-cards-used.md)
-- [Code Review Notes](docs/code-review.md)
+```bash
+make check PYTHON="conda run -n bys python"
+```
+
+검증 항목:
+
+- 프론트엔드/백엔드 필수 파일 존재 여부
+- 결과 이미지 dimension 확인
+- `assets/manifest.json` 경로 무결성 확인
+- viewer 결과 contract 확인
+- 공개 파일 내 비밀값 포함 여부 확인
+
+## 문서
+
+- [개발자 가이드](docs/developer-guide.md)
+- [기술 파이프라인](docs/technical-pipeline.md)
+- [모델 노트](docs/model-cards-used.md)
+- [코드 리뷰 노트](docs/code-review.md)
+
+## 라이선스
+
+MIT License
