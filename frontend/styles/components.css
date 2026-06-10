@@ -12,6 +12,10 @@
   --green: #04785d;
   --green-dark: #006d53;
   --green-soft: #e8f4f0;
+  --viewer-bg-top: #c2ccd0;
+  --viewer-bg-mid: #c5ced2;
+  --viewer-bg-light: #cdd5d8;
+  --viewer-bg-bottom: #bec8cd;
   --shadow: 0 22px 42px rgba(38, 52, 62, 0.10);
 }
 
@@ -642,11 +646,15 @@ img {
   height: clamp(520px, 60vh, 640px);
   border-top: 1px solid #eceff0;
   border-bottom: 1px solid #d7dfde;
-  background: #f4f5f5;
+  background:
+    radial-gradient(ellipse at 50% 8%, var(--viewer-bg-light) 0%, rgba(205, 213, 216, 0.45) 24%, rgba(205, 213, 216, 0) 58%),
+    linear-gradient(180deg, var(--viewer-bg-top) 0%, var(--viewer-bg-mid) 52%, var(--viewer-bg-bottom) 100%);
   overflow: hidden;
 }
 
 .viewer-frame img {
+  position: relative;
+  z-index: 1;
   width: auto;
   height: 100%;
   max-width: 100%;
@@ -936,7 +944,9 @@ img {
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: contain;
-  background: #f3f5f6;
+  background:
+    radial-gradient(ellipse at 50% 8%, var(--viewer-bg-light) 0%, rgba(205, 213, 216, 0.45) 24%, rgba(205, 213, 216, 0) 58%),
+    linear-gradient(180deg, var(--viewer-bg-top) 0%, var(--viewer-bg-mid) 52%, var(--viewer-bg-bottom) 100%);
 }
 
 .proof-placeholder {

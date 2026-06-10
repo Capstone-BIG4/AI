@@ -57,7 +57,16 @@ This demo includes an executed SAM 3D Body technical pipeline for the fixed caps
      - `assets/pipeline/guides/*_coarse_part_map.png`
    - Note: coarse part maps are not DensePose.
 
-6. Guide-conditioned base fitting
+6. Cross-view garment/body alignment proof
+   - Outputs:
+     - `assets/pipeline/alignment/front_body_lines.png`
+     - `assets/pipeline/alignment/side_body_lines.png`
+     - `assets/pipeline/alignment/back_body_lines.png`
+   - Purpose:
+     - Records common shoulder, shirt hem, waist, and pants cuff reference lines across front/side/back.
+     - Used in Analytics as visual evidence that the 2.5D views share the same garment placement convention.
+
+7. Guide-conditioned base fitting
    - Script: `scripts/05_generate_base_fitting.py`
    - Outputs:
      - `assets/pipeline/base_outputs/front_candidate_001.png`
@@ -66,7 +75,7 @@ This demo includes an executed SAM 3D Body technical pipeline for the fixed caps
      - `assets/pipeline/base_outputs/candidates.json`
    - These are rough deterministic candidates that explicitly consume the rendered SAM guide maps.
 
-7. Deterministic draft generation and quality gate
+8. Deterministic draft generation and quality gate
    - Scripts:
      - `scripts/06_refine_outputs.py`
      - `scripts/07_select_final.py`
@@ -83,7 +92,7 @@ This demo includes an executed SAM 3D Body technical pipeline for the fixed caps
      - They failed visual QA for presentation quality and are not used as the final viewer output.
      - The failure is expected: silhouette masks alone do not create cloth thickness, believable sleeve geometry, or photorealistic fabric.
 
-8. SAM Body-only mannequin base, VTON generation, and mask-locked finalization
+9. SAM Body-only mannequin base, VTON generation, and mask-locked finalization
    - Scripts:
      - `scripts/10_guard_viewer_contract.py`
      - `scripts/10_extract_sam_body_measurements.py`
@@ -124,6 +133,7 @@ image/ fixed sample inputs
   -> assets/pipeline/sam3d/native_output.pt
   -> assets/pipeline/sam3d/body.ply
   -> assets/pipeline/guides/front|side|back_*.png
+  -> assets/pipeline/alignment/front|side|back_body_lines.png
   -> assets/pipeline/base_outputs/*_candidate_001.png
   -> assets/pipeline/refined_outputs/*_refined_001.png
   -> assets/results/sam-mannequin-front|side|back.png  # quality-rejected technical drafts

@@ -45,6 +45,18 @@
     "back_normal": {
       "path": "assets/pipeline/guides/back_normal.png",
       "purpose": "Back normal guide"
+    },
+    "front_body_lines": {
+      "path": "assets/pipeline/alignment/front_body_lines.png",
+      "purpose": "Front garment/body alignment proof lines"
+    },
+    "side_body_lines": {
+      "path": "assets/pipeline/alignment/side_body_lines.png",
+      "purpose": "Side garment/body alignment proof lines"
+    },
+    "back_body_lines": {
+      "path": "assets/pipeline/alignment/back_body_lines.png",
+      "purpose": "Back garment/body alignment proof lines"
     }
   },
   "sam_body_base": {

@@ -80,5 +80,8 @@ export const proofAssets = [
   { title: "Front normal", label: "Normal", path: "/assets/pipeline/guides/front_normal.png" },
   { title: "Side normal", label: "Normal", path: "/assets/pipeline/guides/side_normal.png" },
   { title: "Back normal", label: "Normal", path: "/assets/pipeline/guides/back_normal.png" },
+  { title: "Front body lines", label: "Lines", path: "/assets/pipeline/alignment/front_body_lines.png" },
+  { title: "Side body lines", label: "Lines", path: "/assets/pipeline/alignment/side_body_lines.png" },
+  { title: "Back body lines", label: "Lines", path: "/assets/pipeline/alignment/back_body_lines.png" },
   { title: "Mask-locked viewer", label: "Result", path: "/assets/results/display/sam-body-only-front-contrast.png" }
 ];

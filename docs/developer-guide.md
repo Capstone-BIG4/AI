@@ -52,13 +52,14 @@ flowchart TD
   Person --> Preprocess[이미지 정렬과 전처리]
   Preprocess --> Body[SAM 3D Body]
   Body --> Guides[Front / Side / Back Guide Map]
+  Guides --> Align[View Alignment Lines]
 
   TopFront --> GarmentPrep[의류 전처리]
   TopBack --> GarmentPrep
   PantsFront --> GarmentPrep
   PantsBack --> GarmentPrep
 
-  Guides --> Base[SAM Body Mannequin Base]
+  Align --> Base[SAM Body Mannequin Base]
   Base --> VTON[VTON Candidate Generation]
   GarmentPrep --> VTON
   VTON --> Finalize[Mask-Locked Finalization]
@@ -144,10 +145,26 @@ scripts/10_guard_viewer_contract.py
 1. 사용자 사진과 의류 이미지를 전처리합니다.
 2. SAM 3D Body로 신체 구조를 추정합니다.
 3. front / side / back guide map을 생성합니다.
-4. SAM body 기반 마네킹 base를 생성합니다.
-5. VTON 후보를 생성합니다.
-6. 상의/하의 mask 영역만 고정 합성하여 최종 viewer 이미지를 만듭니다.
-7. viewer contract를 검증합니다.
+4. 어깨, 상의 밑단, 허리, 바지 밑단 정렬 라인을 계산해 front / side / back 위치 일관성을 확인합니다.
+5. SAM body 기반 마네킹 base를 생성합니다.
+6. VTON 후보를 생성합니다.
+7. 상의/하의 mask 영역만 고정 합성하여 최종 viewer 이미지를 만듭니다.
+8. viewer contract를 검증합니다.
+
+Analytics에서 사용하는 주요 proof asset:
+
+```text
+assets/pipeline/sam3d/sam3d_preview_front.png
+assets/pipeline/guides/front_silhouette.png
+assets/pipeline/guides/front_depth.png
+assets/pipeline/guides/front_normal.png
+assets/pipeline/guides/side_normal.png
+assets/pipeline/guides/back_normal.png
+assets/pipeline/alignment/front_body_lines.png
+assets/pipeline/alignment/side_body_lines.png
+assets/pipeline/alignment/back_body_lines.png
+assets/results/display/sam-body-only-front-contrast.png
+```
 
 ## 결과 Contract
 
@@ -158,6 +175,9 @@ assets/results/tryon-2d.png
 assets/results/display/sam-body-only-front-contrast.png
 assets/results/display/sam-body-only-side-contrast.png
 assets/results/display/sam-body-only-back-contrast.png
+assets/pipeline/alignment/front_body_lines.png
+assets/pipeline/alignment/side_body_lines.png
+assets/pipeline/alignment/back_body_lines.png
 ```
 
 `assets/manifest.json`은 공개 repo에서 사용하는 결과와 proof asset 경로를 기록합니다.
@@ -178,6 +198,19 @@ conda 환경을 지정하려면:
 
 ```bash
 make dev PYTHON="conda run -n bys python"
+```
+
+GPU 파이프라인을 직접 실행할 때는 아래 순서를 기준으로 확인합니다.
+
+```bash
+python scripts/01_preprocess_assets.py
+python scripts/02_run_sam3d_body.py
+python scripts/02b_export_sam3d_body_artifact.py
+python scripts/03_render_guides.py
+python scripts/18_build_sam_body_only_mannequin_base.py
+python scripts/19_generate_sam_body_only_fashn_viewer.py --views front back side --seeds 2101 2201
+python scripts/20_select_sam_body_only_viewer.py
+python scripts/10_guard_viewer_contract.py
 ```
 
 ## 검증
