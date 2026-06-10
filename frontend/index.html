@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Virtual Fitting Studio</title>
+    <link rel="stylesheet" href="styles/app.css?v=20260610-ui12">
+  </head>
+  <body>
+    <div class="studio-shell">
+      <header class="topbar">
+        <a class="brand-title" href="/">Virtual Fitting Studio</a>
+        <nav class="topnav" aria-label="Studio navigation">
+          <a class="active" href="#studio" data-route="studio">Studio</a>
+          <a href="#analytics" data-route="analytics">Analytics</a>
+        </nav>
+        <div class="top-actions">
+          <fieldset class="run-mode" aria-label="Run mode">
+            <label>
+              <input type="radio" name="runMode" value="standard" checked>
+              Preview
+            </label>
+            <label>
+              <input type="radio" name="runMode" value="gpu">
+              GPU
+            </label>
+          </fieldset>
+          <button class="reset-button" id="resetButton" type="button">Reset</button>
+          <button class="run-button" id="startButton" type="button">Run Fitting</button>
+        </div>
+      </header>
+
+      <div class="workspace" id="studioWorkspace">
+        <aside class="left-rail" aria-label="Required photos">
+          <div class="rail-status" aria-hidden="true">
+            <span>✓</span>
+            <span>⌖</span>
+          </div>
+          <div class="rail-title">
+            <h1>Style Studio</h1>
+            <p>Virtual Fitting</p>
+          </div>
+
+          <div class="required-heading">
+            <span>REQUIRED PHOTOS</span>
+            <strong id="uploadCount">0 / 5</strong>
+          </div>
+
+          <div id="inputCards" class="upload-sections"></div>
+        </aside>
+
+        <main class="asset-workbench" aria-label="Fitting workspace">
+          <div class="workbench-header">
+            <h2>Fitting Workspace</h2>
+            <span class="status-pill" id="runStatus">Ready</span>
+          </div>
+
+          <section class="asset-columns">
+            <article class="asset-column original-column">
+              <div class="column-label">ORIGINAL PHOTO</div>
+              <figure class="large-asset original-asset">
+                <img id="originalImage" alt="Original full-body input photo">
+              </figure>
+            </article>
+
+            <article class="asset-column fit-column">
+              <div class="column-label fit-label">
+                <span aria-hidden="true">✦</span>
+                VIRTUAL FIT
+              </div>
+              <figure class="large-asset fit-asset" id="resultPanel">
+                <div class="match-badge">✓ HIGH MATCH</div>
+                <img id="tryonImage" alt="Virtual fitting result">
+                <figcaption id="stageTitle">Fitting result</figcaption>
+                <div class="locked-overlay hidden" id="resultLock">Waiting for pipeline</div>
+              </figure>
+            </article>
+
+            <aside class="viewer-card" id="viewerBlock" aria-label="3D viewer">
+              <div class="viewer-status" id="viewerStatus">Ready</div>
+              <div class="viewer-header">
+                <strong>3D VIEWER</strong>
+                <button class="expand-button" id="openViewerButton" type="button">Expand</button>
+              </div>
+
+              <div class="viewer-launch" id="viewerLaunch">
+                <strong>3D Viewer</strong>
+              </div>
+
+              <div class="viewer-content hidden" id="viewerContent">
+                <div class="segmented" role="tablist" aria-label="View direction">
+                  <button class="view-tab active" type="button" data-view="front" role="tab">Front</button>
+                  <button class="view-tab" type="button" data-view="side" role="tab">Side</button>
+                  <button class="view-tab" type="button" data-view="back" role="tab">Back</button>
+                </div>
+
+                <figure class="viewer-frame">
+                  <img id="viewerImage" alt="Front mannequin virtual fitting result">
+                  <div class="viewer-zoom-controls" aria-label="Viewer image controls">
+                    <button class="viewer-zoom-button" id="viewerZoomOut" type="button" aria-label="Zoom out">-</button>
+                    <button class="viewer-zoom-button" id="viewerZoomIn" type="button" aria-label="Zoom in">+</button>
+                  </div>
+                  <figcaption id="viewerCaption">SAM body-only generated front view</figcaption>
+                </figure>
+
+                <div class="viewer-thumbs" id="viewerThumbs" aria-label="Viewer thumbnails"></div>
+              </div>
+            </aside>
+          </section>
+
+        </main>
+      </div>
+
+      <main class="analytics-page screen-hidden" id="analyticsView" aria-label="Pipeline analytics">
+        <div class="analytics-header">
+          <h1>Pipeline Analytics</h1>
+          <span class="status-pill analytics-status">SAM + VTON</span>
+        </div>
+
+        <section class="pipeline-strip" id="pipelineAnalytics" aria-label="Pipeline analytics">
+          <div class="pipeline-head">
+            <span>Pipeline Analytics</span>
+            <strong id="pipelineRuntime">Ready</strong>
+          </div>
+          <ol id="progressSteps" class="timeline"></ol>
+          <div class="analytics-proof">
+            <div class="analytics-title">
+              <strong>Technical proof</strong>
+              <span>Pipeline outputs</span>
+            </div>
+            <div class="proof-grid" id="proofGrid"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="src/main.js?v=20260610-ui12"></script>
+  </body>
+</html>

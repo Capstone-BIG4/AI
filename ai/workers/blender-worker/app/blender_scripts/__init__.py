@@ -1,1 +1,0 @@
-# Blender script package placeholder.

@@ -1,0 +1,69 @@
+{
+  "project": "Virtual Fitting Studio",
+  "license": "MIT",
+  "result_contract": {
+    "tryon_2d": {
+      "path": "assets/results/tryon-2d.png",
+      "purpose": "Main 2D virtual fitting result"
+    },
+    "viewer": {
+      "front": {
+        "path": "assets/results/display/sam-body-only-front-contrast.png",
+        "purpose": "Front 2.5D mannequin viewer result"
+      },
+      "side": {
+        "path": "assets/results/display/sam-body-only-side-contrast.png",
+        "purpose": "Side 2.5D mannequin viewer result"
+      },
+      "back": {
+        "path": "assets/results/display/sam-body-only-back-contrast.png",
+        "purpose": "Back 2.5D mannequin viewer result"
+      }
+    }
+  },
+  "proof_assets": {
+    "sam_body_preview": {
+      "path": "assets/pipeline/sam3d/sam3d_preview_front.png",
+      "purpose": "SAM 3D Body preview"
+    },
+    "front_silhouette": {
+      "path": "assets/pipeline/guides/front_silhouette.png",
+      "purpose": "Front guide silhouette"
+    },
+    "front_depth": {
+      "path": "assets/pipeline/guides/front_depth.png",
+      "purpose": "Front depth guide"
+    },
+    "front_normal": {
+      "path": "assets/pipeline/guides/front_normal.png",
+      "purpose": "Front normal guide"
+    },
+    "side_normal": {
+      "path": "assets/pipeline/guides/side_normal.png",
+      "purpose": "Side normal guide"
+    },
+    "back_normal": {
+      "path": "assets/pipeline/guides/back_normal.png",
+      "purpose": "Back normal guide"
+    }
+  },
+  "sam_body_base": {
+    "front": {
+      "path": "assets/pipeline/sam_body_only/base/front_sam_body_only_base.png"
+    },
+    "side": {
+      "path": "assets/pipeline/sam_body_only/base/side_sam_body_only_base.png"
+    },
+    "back": {
+      "path": "assets/pipeline/sam_body_only/base/back_sam_body_only_base.png"
+    }
+  },
+  "mask_locked_outputs": {
+    "front": {
+      "path": "assets/pipeline/sam_body_only/mask_locked/front_sam_locked_seed2101_display.png"
+    },
+    "back": {
+      "path": "assets/pipeline/sam_body_only/mask_locked/back_sam_locked_seed2101_display.png"
+    }
+  }
+}

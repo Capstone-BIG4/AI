@@ -1,0 +1,1 @@
+"""Virtual fitting backend application."""

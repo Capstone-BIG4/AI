@@ -1,15 +1,16 @@
-COMPOSE_FILE=infra/docker/docker-compose.local.yml
+.PHONY: dev check check-artifacts check-python
 
-.PHONY: infra-up infra-down api-dev web-dev
+PYTHON ?= python
 
-infra-up:
-	docker compose -f $(COMPOSE_FILE) up -d
+dev:
+	$(PYTHON) scripts/dev/run_server.py --port 8000
 
-infra-down:
-	docker compose -f $(COMPOSE_FILE) down
+check: check-python check-artifacts
 
-api-dev:
-	cd backend/api && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+check-python:
+	$(PYTHON) -m py_compile backend/app/main.py backend/app/api/router.py backend/app/pipeline/executor.py scripts/check_artifacts.py scripts/check_manifest_paths.py
 
-web-dev:
-	cd frontend/web && npm run dev
+check-artifacts:
+	$(PYTHON) scripts/check_artifacts.py
+	$(PYTHON) scripts/check_manifest_paths.py
+	$(PYTHON) scripts/check_token_leaks.py

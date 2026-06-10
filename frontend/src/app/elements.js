@@ -1,0 +1,32 @@
+export function getAppElements() {
+  return {
+    inputCards: document.querySelector("#inputCards"),
+    studioWorkspace: document.querySelector("#studioWorkspace"),
+    analyticsView: document.querySelector("#analyticsView"),
+    uploadCount: document.querySelector("#uploadCount"),
+    progressList: document.querySelector("#progressSteps"),
+    startButton: document.querySelector("#startButton"),
+    resetButton: document.querySelector("#resetButton"),
+    runStatus: document.querySelector("#runStatus"),
+    stageTitle: document.querySelector("#stageTitle"),
+    resultPanel: document.querySelector("#resultPanel"),
+    tryonImage: document.querySelector("#tryonImage"),
+    originalImage: document.querySelector("#originalImage"),
+    resultLock: document.querySelector("#resultLock"),
+    viewerBlock: document.querySelector("#viewerBlock"),
+    viewerStatus: document.querySelector("#viewerStatus"),
+    openViewerButton: document.querySelector("#openViewerButton"),
+    viewerImage: document.querySelector("#viewerImage"),
+    viewerZoomIn: document.querySelector("#viewerZoomIn"),
+    viewerZoomOut: document.querySelector("#viewerZoomOut"),
+    viewerCaption: document.querySelector("#viewerCaption"),
+    viewerContent: document.querySelector("#viewerContent"),
+    viewerLaunch: document.querySelector("#viewerLaunch"),
+    viewerThumbs: document.querySelector("#viewerThumbs"),
+    viewTabs: Array.from(document.querySelectorAll(".view-tab")),
+    proofGrid: document.querySelector("#proofGrid"),
+    pipelineRuntime: document.querySelector("#pipelineRuntime"),
+    navLinks: Array.from(document.querySelectorAll(".topnav a")),
+    runModeInputs: Array.from(document.querySelectorAll('input[name="runMode"]'))
+  };
+}
